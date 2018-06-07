@@ -1,0 +1,221 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  font-family: 'Roboto', sans-serif;
+}
+body {
+  background: #e1e1e1;
+  height: 100%;
+  padding-bottom: 50px;
+}
+h2 {
+  margin: 0;
+  font-size: 24px;
+}
+.displayNone {
+  display: none;
+}
+.navbarPlaceholder {
+  width: 100%;
+  height: 76px;
+}
+.navbar {
+  height: 76px;
+  width: 100%;
+  position: fixed;
+  z-index: 30;
+  background: #4a90e2;
+}
+.navbar .navbar_row {
+  width: 660px;
+  margin: 0 auto;
+  height: 100%;
+}
+.navbar .navbar_col {
+  width: 220px;
+  height: 100%;
+}
+.navbar .navbar_col h2 {
+  color: #fff;
+  line-height: 76px;
+  margin: 0;
+  text-align: center;
+}
+.container {
+  margin: 0 auto;
+  width: 620px;
+}
+.container .todo_input {
+  width: 100%;
+  height: 65px;
+  border-radius: 5px;
+  margin: 24px 0px;
+  padding: 0px 1rem;
+  font-size: 24px;
+  border: 2px solid #c8c8c8;
+}
+.addTodo_container {
+  width: 100%;
+  border-radius: 5px;
+}
+.addTodo_container .addTodo_title {
+  height: 76px;
+  width: 100%;
+  background: #f2f2f2;
+  padding: 0px 32px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-bottom: 2px;
+}
+.addTodo_container .addTodo_body {
+  background: #f2f2f2;
+  width: 100%;
+  padding: 24px 72px;
+}
+.addTodo_container .addTodo_body_col {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.addTodo_container .addTodo_body_col_label {
+  font-size: 20px;
+  padding-bottom: 5px;
+}
+.addTodo_container .addTodo_body_col_label i {
+  margin-right: 9px;
+}
+.addTodo_container .addTodo_body_col_inputContainer {
+  padding: 0 20px;
+}
+.addTodo_container .addTodo_body_col_input {
+  border-radius: 2px;
+  border-style: none;
+}
+.addTodo_container .addTodo_body_col_uploadButton {
+  width: 32px;
+  height: 32px;
+  border-radius: 2px;
+  background: #c8c8c8;
+  color: #fff;
+  font-size: 24px;
+  line-height: 32px;
+  text-align: center;
+  display: block;
+}
+.addTodo_container .addTodo_body_col_uploadButton:hover {
+  cursor: pointer;
+}
+.addTodo_container .addTodo_body_col_textarea {
+  width: 100%;
+  height: 100px;
+  resize: none;
+}
+.addTodo_container .addTodo_bottomButtonRow {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  text-align: center;
+}
+.addTodo_container .addTodo_bottomButtonRow h2 {
+  line-height: 60px;
+  font-weight: 100;
+}
+.addTodo_container .addTodo_bottomButtonRow_cancel {
+  width: 50%;
+  height: 100%;
+  color: #d0021b;
+  background: #fff;
+}
+.addTodo_container .addTodo_bottomButtonRow_cancel:hover {
+  background: #ffe7e7;
+}
+.addTodo_container .addTodo_bottomButtonRow_add {
+  width: 50%;
+  height: 100%;
+  color: #fff;
+  background: #4a90e2;
+}
+.addTodo_container .addTodo_bottomButtonRow_add:hover {
+  background: #3982d7;
+}
+.Todo_title_check {
+  width: 24px;
+  height: 24px;
+  background: #fff;
+  border-radius: 2px;
+  margin-right: 16px;
+}
+.Todo_title_check-checked {
+  background: #4a90e2;
+  color: #fff;
+  text-align: center;
+  line-height: 24px;
+}
+.Todo_title_todoName {
+  font-size: 28px;
+  width: 248px;
+  overflow: hidden;
+  margin: 0;
+  white-space: nowrap; /*死都不換行*/
+  text-overflow: ellipsis; /*產生...效果*/
+}
+.Todo_title_functionList {
+  width: 100px;
+  height: 24px;
+  position: absolute;
+  right: 30px;
+  display: inline-flex;
+}
+.Todo_title_functionList i {
+  font-size: 24px;
+}
+.Todo_title_functionList_star {
+  margin-right: 32px;
+}
+.Todo_title_functionList_pen {
+  color: #4a90e2;
+}
+.todoList_row {
+  width: 100%;
+  margin-top: 20px;
+}
+.todoList_row .todoList_col {
+  width: 100%;
+  height: 102px;
+  background: #f2f2f2;
+  border-radius: 5px;
+  margin-bottom: 8px;
+}
+.todoList_row .todoList_col-imp {
+  background: #fff2dc;
+}
+.todoList_row .todoList_titleContainer {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 0px 32px;
+}
+.todoList_row .todoList_stateContainer {
+  width: 100px;
+  height: auto;
+  margin-left: 75px;
+}
+.todoList_row .todoList_stateContainer i {
+  margin-right: 5px;
+  color: #757575;
+}
+.todoList_row .todoList_col-completed {
+  width: 100%;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  background: #f2f2f2;
+  border-radius: 5px;
+  margin-bottom: 8px;
+  text-decoration: line-through;
+  color: #9b9b9b;
+}

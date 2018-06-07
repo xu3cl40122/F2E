@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../normalize.css">
+    <link rel="stylesheet" href="./index.css">
+    <title>TODO</title>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="navbar_row">
+            <div class="navbar_col">
+                <h2>Task</h2>
+            </div>
+        </div>
+    </div>
+    <div class="navbarPlaceholder"></div>
+    <div class="container">
+        <input type="text" placeholder="+ Add Task" class="todo_input">
+        <div class="addTodo_container">
+            <div class="addTodo_title">
+                <div class="Todo_title_check"></div>
+                <h2 class="Todo_title_todoName">Type Something Here</h2>
+                <div class="Todo_title_functionList">
+                    <i class="fa fa-star-o Todo_title_functionList_star"></i>
+                    <i class=" fa fa-pencil Todo_title_functionList_pen"></i>
+                </div>
+            </div>
+            <div class="addTodo_body">
+                <div class="addTodo_body_col">
+                    <div class="addTodo_body_col_label">
+                        <i class="fa fa-calendar"></i>Deadline</div>
+                    <div class="addTodo_body_col_inputContainer">
+                        <input type="date" class="addTodo_body_col_input">
+                        <input type="time" class="addTodo_body_col_input">
+                    </div>
+                </div>
+                <div class="addTodo_body_col">
+                    <div class="addTodo_body_col_label">
+                        <i class=" fa fa-file-o"></i>File</div>
+                    <div class="addTodo_body_col_inputContainer">
+                        <label class="addTodo_body_col_uploadButton">
+                            <input type="file" class="displayNone">
+                            <div class="">+</div>
+                        </label>
+                    </div>
+                </div>
+                <div class="addTodo_body_col">
+                    <div class="addTodo_body_col_label">
+                        <i class="fa fa-commenting-o"></i>Comment</div>
+                    <div class="addTodo_body_col_inputContainer">
+                        <textarea name="" class="addTodo_body_col_textarea"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="addTodo_bottomButtonRow">
+                <div class="addTodo_bottomButtonRow_cancel">
+                    <h2>Cancel</h2>
+                </div>
+                <div class="addTodo_bottomButtonRow_add">
+                    <h2>+ Add Task</h2>
+                </div>
+            </div>
+        </div>
+        <div class="todoList_row">
+            <div class="todoList_col todoList_col-imp">
+                <div class="todoList_titleContainer">
+                    <div class="Todo_title_check"></div>
+                    <h2 class="Todo_title_todoName">Type Something Here</h2>
+                    <div class="Todo_title_functionList">
+                        <i class="fa fa-star-o Todo_title_functionList_star"></i>
+                        <i class=" fa fa-pencil Todo_title_functionList_pen"></i>
+                    </div>
+                </div>
+                <div class="todoList_stateContainer">
+                    <i class="fa fa-calendar"></i>
+                    <i class="fa fa-file-o"></i>
+                    <i class="fa fa-commenting-o"></i>
+                </div>
+            </div>
+            <div class="todoList_col-completed">
+                <div class="todoList_titleContainer">
+                    <div class="Todo_title_check Todo_title_check-checked">
+                        <i class="fa fa-check"></i>
+                    </div>
+                    <h2 class="Todo_title_todoName">Type Something Here</h2>
+                    <div class="Todo_title_functionList">
+                        <i class="fa fa-star-o Todo_title_functionList_star"></i>
+                        <i class=" fa fa-pencil Todo_title_functionList_pen"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
