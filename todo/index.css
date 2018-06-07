@@ -58,6 +58,20 @@ h2 {
   font-size: 24px;
   border: 2px solid #c8c8c8;
 }
+.container .showAddtodo_button {
+  width: 100px;
+  height: 40px;
+  margin: 0 auto;
+  background: #757575;
+  margin-top: 20px;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 40px;
+  color: #fff;
+}
+.container .showAddtodo_button:hover {
+  cursor: pointer;
+}
 .addTodo_container {
   width: 100%;
   border-radius: 5px;
@@ -95,6 +109,7 @@ h2 {
 .addTodo_container .addTodo_body_col_input {
   border-radius: 2px;
   border-style: none;
+  margin-right: 5px;
 }
 .addTodo_container .addTodo_body_col_uploadButton {
   width: 32px;
@@ -163,7 +178,6 @@ h2 {
   line-height: 24px;
 }
 .Todo_title_todoName {
-  font-size: 28px;
   width: 248px;
   overflow: hidden;
   margin: 0;
@@ -209,13 +223,17 @@ h2 {
   padding: 0px 32px;
 }
 .todoList_row .todoList_stateContainer {
-  width: 100px;
+  min-width: 200px;
   height: auto;
   margin-left: 75px;
+  display: flex;
+  color: #757575;
 }
 .todoList_row .todoList_stateContainer i {
   margin-right: 5px;
-  color: #757575;
+}
+.todoList_row .todoList_stateContainer p {
+  margin: 0;
 }
 .todoList_row .todoList_col-completed {
   width: 100%;

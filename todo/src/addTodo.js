@@ -4,34 +4,46 @@ import ReactDOM from 'react-dom'
 export class AddTodo extends React.Component {
     constructor(props) {
         super(props)
-        this.state={
-            todoData:{
-                name:'',
-                date:'',
-                time:'',
-                file:'',
-                comment:''
+        this.state = {
+            todoData: {
+                name: '',
+                date: '',
+                time: '',
+                file: '',
+                comment: ''
             }
         }
-        this.handleChange = this.handleChange.bind(this)        
+        this.handleChange = this.handleChange.bind(this)
+        this.handleAdd = this.handleAdd.bind(this)
+        this.handleCancel = this.handleCancel.bind(this)
     }
-    handleChange(e){
-        const{name, value}= e.target
+    handleChange(e) {
+        const { name, value } = e.target
         this.setState({
-            todoData:{
+            todoData: {
                 ...this.state.todoData,
-                [name]:value
+                [name]: value
             }
         })
     }
+    handleAdd() {
+        const { addTodo, cancelAdd} = this.props
+        addTodo(this.state.todoData)
+        cancelAdd()// hide addtodo form 
+        
+    }
+    handleCancel() {
+       const{cancelAdd} = this.props
+       cancelAdd()
+    }
     render() {
-        console.log(this.state)
+        console.log(this.props)
         return (
             <div>
                 <div className="addTodo_container">
                     <div className="addTodo_title">
                         <div className="Todo_title_check"></div>
-                        <input onChange={this.handleChange} type="text" name='name' className='todo_input' placeholder="+ Add Task"/>
+                        <input onChange={this.handleChange} type="text" name='name' className='todo_input' placeholder="+ Add Task" />
                         <div className="Todo_title_functionList">
                             <i className="fa fa-star-o Todo_title_functionList_star"></i>
                             <i className=" fa fa-pencil Todo_title_functionList_pen"></i>
@@ -42,8 +54,8 @@ export class AddTodo extends React.Component {
                             <div className="addTodo_body_col_label">
                                 <i className="fa fa-calendar"></i>Deadline</div>
                             <div className="addTodo_body_col_inputContainer">
-                                <input type="date" name='date' className="addTodo_body_col_input" onChange={this.handleChange}/>
-                                <input type="time" name='time' className="addTodo_body_col_input" onChange={this.handleChange}/>
+                                <input type="date" name='date' className="addTodo_body_col_input" onChange={this.handleChange} />
+                                <input type="time" name='time' className="addTodo_body_col_input" onChange={this.handleChange} />
                             </div>
                         </div>
                         <div className="addTodo_body_col">
@@ -65,10 +77,10 @@ export class AddTodo extends React.Component {
                         </div>
                     </div>
                     <div className="addTodo_bottomButtonRow">
-                        <div className="addTodo_bottomButtonRow_cancel">
+                        <div className="addTodo_bottomButtonRow_cancel" onClick={this.handleCancel}>
                             <h2>Cancel</h2>
                         </div>
-                        <div className="addTodo_bottomButtonRow_add">
+                        <div className="addTodo_bottomButtonRow_add" onClick={this.handleAdd}>
                             <h2>+ Add Task</h2>
                         </div>
                     </div>
