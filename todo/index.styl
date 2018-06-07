@@ -6,6 +6,7 @@ body
     background #E1E1E1 
     height 100%
     padding-bottom 50px
+    margin 0
 h2  
     margin 0 
     font-size 24px
@@ -33,6 +34,7 @@ navbar_row__height = 76px
         width navbar_row__width
         margin 0 auto 
         height 100% 
+        display flex
     .navbar_col 
         width (navbar_row__width/3)
         height 100%
@@ -41,12 +43,13 @@ navbar_row__height = 76px
             line-height navbar_row__height
             margin 0
             text-align center
+            font-weight 200
 .container 
     margin 0 auto 
     width 620px
     .todo_input 
-        width 100% 
-        height 65px
+        width 350px 
+        height 35px
         border-radius 5px 
         margin 24px 0px
         padding 0px 1rem
@@ -55,6 +58,7 @@ navbar_row__height = 76px
 .addTodo_container 
     width 100%
     border-radius 5px
+    margin-top 25px
     .addTodo_title
         height 76px
         width 100%
@@ -98,6 +102,9 @@ navbar_row__height = 76px
         width 100% 
         height 100px
         resize none
+        border-style none 
+        border-radius 5px
+
     .addTodo_bottomButtonRow 
         width 100%
         height h = 60px 
@@ -111,15 +118,19 @@ navbar_row__height = 76px
         height 100%
         color #D0021B 
         background white
+        transition background 0.3s ease-out
         &:hover 
             background #ffe7e7
+            cursor pointer
     .addTodo_bottomButtonRow_add 
         width 50% 
         height 100%
         color white      
         background t_blue
+        transition background 0.2s ease-out
         &:hover 
             background #3982D7
+            cursor pointer
 // --- todo 共用 ---
 .Todo_title_check 
         width 24px 

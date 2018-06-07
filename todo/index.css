@@ -8,6 +8,7 @@ body {
   background: #e1e1e1;
   height: 100%;
   padding-bottom: 50px;
+  margin: 0;
 }
 h2 {
   margin: 0;
@@ -31,6 +32,7 @@ h2 {
   width: 660px;
   margin: 0 auto;
   height: 100%;
+  display: flex;
 }
 .navbar .navbar_col {
   width: 220px;
@@ -41,14 +43,15 @@ h2 {
   line-height: 76px;
   margin: 0;
   text-align: center;
+  font-weight: 200;
 }
 .container {
   margin: 0 auto;
   width: 620px;
 }
 .container .todo_input {
-  width: 100%;
-  height: 65px;
+  width: 350px;
+  height: 35px;
   border-radius: 5px;
   margin: 24px 0px;
   padding: 0px 1rem;
@@ -58,6 +61,7 @@ h2 {
 .addTodo_container {
   width: 100%;
   border-radius: 5px;
+  margin-top: 25px;
 }
 .addTodo_container .addTodo_title {
   height: 76px;
@@ -110,6 +114,8 @@ h2 {
   width: 100%;
   height: 100px;
   resize: none;
+  border-style: none;
+  border-radius: 5px;
 }
 .addTodo_container .addTodo_bottomButtonRow {
   width: 100%;
@@ -126,18 +132,22 @@ h2 {
   height: 100%;
   color: #d0021b;
   background: #fff;
+  transition: background 0.3s ease-out;
 }
 .addTodo_container .addTodo_bottomButtonRow_cancel:hover {
   background: #ffe7e7;
+  cursor: pointer;
 }
 .addTodo_container .addTodo_bottomButtonRow_add {
   width: 50%;
   height: 100%;
   color: #fff;
   background: #4a90e2;
+  transition: background 0.2s ease-out;
 }
 .addTodo_container .addTodo_bottomButtonRow_add:hover {
   background: #3982d7;
+  cursor: pointer;
 }
 .Todo_title_check {
   width: 24px;
