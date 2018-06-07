@@ -37,6 +37,7 @@ export class AddTodo extends React.Component {
        const{cancelAdd} = this.props
        cancelAdd()
     }
+    
     render() {
         return (
             <div>

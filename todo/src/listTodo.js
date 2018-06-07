@@ -14,21 +14,6 @@ export class ListTodo extends React.Component {
                         <TodoCol todo={todo} key={todo.id} id={todo.id} changeType={changeType}/>
                     )
                 })}
-                <div className="todoList_col todoList_col-imp">
-                    <div className="todoList_titleContainer">
-                        <div className="Todo_title_check"></div>
-                        <h2 className="Todo_title_todoName">Type Something Here</h2>
-                        <div className="Todo_title_functionList">
-                            <i className="fa fa-star-o Todo_title_functionList_star"></i>
-                            <i className=" fa fa-pencil Todo_title_functionList_pen"></i>
-                        </div>
-                    </div>
-                    <div className="todoList_stateContainer">
-                        <i className="fa fa-file-o"></i>
-                        <i className="fa fa-commenting-o"></i>
-                        <i className="fa fa-calendar"></i>
-                    </div>
-                </div>
                 <div className="todoList_col-completed">
                     <div className="todoList_titleContainer">
                         <div className="Todo_title_check Todo_title_check-checked">
@@ -52,13 +37,17 @@ class TodoCol extends React.Component{
         this.changeType = this.changeType.bind(this)
     }
     changeType(){
-        const{changeType} = this.props 
-        changeType(2,1)
+        const{changeType,todo} = this.props 
+        if(todo.type == 2){
+            changeType(todo.id, 1)
+        }else if(todo.type ==1){
+            changeType(todo.id, 2)
+        }
     }
     render(){
         const{todo,changeType}=this.props
         return(
-            <div className="todoList_col">
+            <div className={todo.type == 1 ? 'todoList_col todoList_col-imp' :'todoList_col'}>
                 <div className="todoList_titleContainer">
                     <div className="Todo_title_check"></div>
                     <h2 className="Todo_title_todoName">{todo.name}</h2>
