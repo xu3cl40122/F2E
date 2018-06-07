@@ -6,12 +6,12 @@ export class ListTodo extends React.Component {
         super(props)
     }
     render() {
-        const {normal} = this.props.todos
+        const { todos, changeType} = this.props
         return (
             <div className="todoList_row">
-                {normal.map(todo =>{
+                {todos.map(todo =>{
                     return(
-                        <TodoCol todo={todo} key={todo.id} id={todo.id}/>
+                        <TodoCol todo={todo} key={todo.id} id={todo.id} changeType={changeType}/>
                     )
                 })}
                 <div className="todoList_col todoList_col-imp">
@@ -49,16 +49,21 @@ export class ListTodo extends React.Component {
 class TodoCol extends React.Component{
     constructor(props){
         super(props)
+        this.changeType = this.changeType.bind(this)
+    }
+    changeType(){
+        const{changeType} = this.props 
+        changeType(2,1)
     }
     render(){
-        const{todo}=this.props
+        const{todo,changeType}=this.props
         return(
             <div className="todoList_col">
                 <div className="todoList_titleContainer">
                     <div className="Todo_title_check"></div>
                     <h2 className="Todo_title_todoName">{todo.name}</h2>
                     <div className="Todo_title_functionList">
-                        <i className="fa fa-star-o Todo_title_functionList_star"></i>
+                        <i className="fa fa-star-o Todo_title_functionList_star" onClick={this.changeType}></i>
                         <i className=" fa fa-pencil Todo_title_functionList_pen"></i>
                     </div>
                 </div>

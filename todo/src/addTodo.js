@@ -7,10 +7,11 @@ export class AddTodo extends React.Component {
         this.state = {
             todoData: {
                 name: '',
+                type: 2,
                 date: '',
                 time: '',
                 file: '',
-                comment: ''
+                comment: '',
             }
         }
         this.handleChange = this.handleChange.bind(this)
@@ -37,7 +38,6 @@ export class AddTodo extends React.Component {
        cancelAdd()
     }
     render() {
-        console.log(this.props)
         return (
             <div>
                 <div className="addTodo_container">

@@ -8,28 +8,37 @@ class App extends React.Component{
     constructor(props){
         super(props)
         this.state={
-            imp:[],
-            normal:[],
-            complete:[],
+            todos:[],
             addHidden:true
         }
         this.id = 1
         this.addTodo = this.addTodo.bind(this)
         this.cancelAdd = this.cancelAdd.bind(this)
+        this.changeType = this.changeType.bind(this)
     }
     addTodo(data){
-        const {normal} = this.state
+        const {todos} = this.state
+        // 加上 id
         let todo = {
             ...data,
             id:this.id++
         }
-        
         this.setState({
-            normal:[...this.state.normal,todo]
+            todos:[...this.state.todos,todo]
         })
     }
     cancelAdd(){
         this.setState({addHidden:true})
+    }
+    changeType(id,type){
+        let copyList = this.state.todos.slice()//copy array
+        let oldData = copyList.find((t)=>t.id ==id)
+        let newData = {...oldData,type:type}
+        let index = copyList.findIndex((t) => t.id == id)
+        copyList.splice(index, 1, newData)
+        this.setState({
+            todos: copyList
+        })
     }
     render(){
         console.log(this.state)
@@ -39,7 +48,7 @@ class App extends React.Component{
                 <div className="container">
                     {!this.state.addHidden? null: <div className='showAddtodo_button' onClick={()=>{this.setState({addHidden:false})}}>Add Task</div>}
                     {this.state.addHidden ? null : <AddTodo addTodo={this.addTodo} cancelAdd={this.cancelAdd}/>}
-                    <ListTodo todos = {this.state} />
+                    <ListTodo todos = {this.state.todos} changeType={this.changeType}/>
                 </div>
             </div>
         )
