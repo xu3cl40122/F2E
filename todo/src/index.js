@@ -43,18 +43,7 @@ class App extends React.Component{
             todos: copyList
         })
     }
-    /*componentDidUpdate(prevProps, prevState) {
-        const {todos} = this.state
-        if (prevState.todos !== todos){
-            let newList = todos.slice() //copy array
-            newList.sort((a,b)=>{
-                return a.type - b.type
-            })
-            this.setState({
-                todos:newList
-            })
-        }
-    }*/
+    
     render(){
         console.log(this.state)
         return(

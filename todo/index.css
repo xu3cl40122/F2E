@@ -197,6 +197,10 @@ h2 {
 .Todo_title_functionList_star {
   margin-right: 32px;
 }
+.Todo_title_functionList_star-imp {
+  color: #f5a623;
+  margin-right: 32px;
+}
 .Todo_title_functionList_pen {
   color: #4a90e2;
 }
