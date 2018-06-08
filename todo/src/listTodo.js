@@ -1,17 +1,22 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-
+import {AddTodo} from './addTodo'
 export class ListTodo extends React.Component {
     constructor(props) {
         super(props)
     }
     render() {
-        const { todos, changeType} = this.props
+        const { todos, changeValue} = this.props
         return (
             <div className="todoList_row">
                 {todos.map(todo =>{
+                    if (todo.isEditing){
+                        return(
+                            <AddTodo key={todo.id} id={todo.id}/>
+                        )
+                    }
                     return(
-                        <TodoCol todo={todo} key={todo.id} id={todo.id} changeType={changeType}/>
+                        <TodoCol todo={todo} key={todo.id} id={todo.id} changeValue={changeValue}/>
                     )
                 })}
                 
@@ -24,18 +29,23 @@ class TodoCol extends React.Component{
     constructor(props){
         super(props)
         this.changeType = this.changeType.bind(this)
+        this.edit = this.edit.bind(this)
     }
     changeType(isCheck){
         // isCheck 代表由打勾觸發
-        const{changeType,todo} = this.props 
+        const { changeValue,todo} = this.props 
         if (isCheck & todo.type != 3){
-            changeType(todo.id,3)
+            changeValue(todo.id,3,'type')
         } else if ((isCheck & todo.type == 3) | (todo.type == 1)){
-            changeType(todo.id, 2)
+            changeValue(todo.id, 2, 'type')
         }
         else if(todo.type == 2){
-            changeType(todo.id, 1)
+            changeValue(todo.id, 1, 'type')
         }
+    }
+    edit(){
+        const{changeValue, todo} = this.props 
+        changeValue(todo.id, true,'isEditing')
     }
     render(){
         const{todo}=this.props
@@ -46,7 +56,7 @@ class TodoCol extends React.Component{
                     <h2 className="Todo_title_todoName">{todo.name}</h2>
                     <div className="Todo_title_functionList">
                         {todo.type == 2 ? <i className="fa fa-star-o Todo_title_functionList_star" onClick={this.changeType}></i> : <i className="fa fa-star Todo_title_functionList_star-imp" onClick={this.changeType}></i>}
-                        <i className=" fa fa-pencil Todo_title_functionList_pen"></i>
+                        <i className=" fa fa-pencil Todo_title_functionList_pen" onClick={()=>{this.edit()}}></i>
                     </div>
                 </div>
                 <div className="todoList_stateContainer">

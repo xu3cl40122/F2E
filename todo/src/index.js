@@ -14,7 +14,7 @@ class App extends React.Component{
         this.id = 1
         this.addTodo = this.addTodo.bind(this)
         this.cancelAdd = this.cancelAdd.bind(this)
-        this.changeType = this.changeType.bind(this)
+        this.changeValue = this.changeValue.bind(this)
     }
     addTodo(data){
         const {todos} = this.state
@@ -30,12 +30,13 @@ class App extends React.Component{
     cancelAdd(){
         this.setState({addHidden:true})
     }
-    changeType(id,type){
+    changeValue(id,value,kind){
         let copyList = this.state.todos.slice()//copy array
         let oldData = copyList.find((t)=>t.id ==id)
-        let newData = {...oldData,type:type}
+        let newData = { ...oldData, [kind]:value}
         let index = copyList.findIndex((t) => t.id == id)
         copyList.splice(index, 1, newData)
+        // 重新按順位排列再set state
         copyList.sort((a, b) => {
             return a.type - b.type
         })
@@ -52,7 +53,7 @@ class App extends React.Component{
                 <div className="container">
                     {!this.state.addHidden? null: <div className='showAddtodo_button' onClick={()=>{this.setState({addHidden:false})}}>Add Task</div>}
                     {this.state.addHidden ? null : <AddTodo addTodo={this.addTodo} cancelAdd={this.cancelAdd}/>}
-                    <ListTodo todos = {this.state.todos} changeType={this.changeType}/>
+                    <ListTodo todos={this.state.todos} changeValue={this.changeValue}/>
                 </div>
             </div>
         )
