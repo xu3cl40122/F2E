@@ -53,7 +53,7 @@ class App extends React.Component{
                 <div className="container">
                     {!this.state.addHidden? null: <div className='showAddtodo_button' onClick={()=>{this.setState({addHidden:false})}}>Add Task</div>}
                     {this.state.addHidden ? null : <AddTodo addTodo={this.addTodo} cancelAdd={this.cancelAdd}/>}
-                    <ListTodo todos={this.state.todos} changeValue={this.changeValue}/>
+                    <ListTodo todos={this.state.todos} changeValue={this.changeValue} addTodo={this.addTodo}/>
                 </div>
             </div>
         )
