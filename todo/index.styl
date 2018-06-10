@@ -39,13 +39,24 @@ navbar_row__height = 76px
         display flex
     .navbar_col 
         width (navbar_row__width/3)
-        height 100%
+        height 100% 
+        position relative
         h2 
             color #FFFFFF
             line-height navbar_row__height
             margin 0
             text-align center
             font-weight 200
+    .navbar_col-active
+        &:before 
+            content ""
+            position absolute
+            bottom 0
+            width 70% 
+            height 5px 
+            background #00408B
+            margin 0 15%
+        
 .container 
     margin 0 auto 
     width 620px

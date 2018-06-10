@@ -40,6 +40,7 @@ h2 {
 .navbar .navbar_col {
   width: 220px;
   height: 100%;
+  position: relative;
 }
 .navbar .navbar_col h2 {
   color: #fff;
@@ -47,6 +48,15 @@ h2 {
   margin: 0;
   text-align: center;
   font-weight: 200;
+}
+.navbar .navbar_col-active:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 70%;
+  height: 5px;
+  background: #00408b;
+  margin: 0 15%;
 }
 .container {
   margin: 0 auto;
