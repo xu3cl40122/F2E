@@ -46,7 +46,16 @@ class App extends React.Component{
             todos: copyList
         })
     }
-    saveEdit(index,data){
+    saveEdit(index,data,isCancel=false){
+        if(isCancel){
+            let nl = this.state.todos.slice()
+            console.log('nl',nl[index])
+            nl[index]['isEditing']=false
+            this.setState({
+                todos: nl
+            })
+            return
+        }
         let nl = this.state.todos.slice()
         nl[index] = data
         this.setState({

@@ -118,19 +118,22 @@ class BottomButton extends React.Component {
     constructor(props) {
         super(props)
         this.saveEdit = this.saveEdit.bind(this)
+        this.cancelEdit = this.cancelEdit.bind(this)
     }
     saveEdit(){
-        console.log(this.props.todo)
         const { saveEdit,index,todo} = this.props
         todo.isEditing = false
         saveEdit(index,todo)
-        
+    }
+    cancelEdit(){
+        const { saveEdit, index, todo } = this.props
+        saveEdit(index, todo,true)
     }
     render() {
         const{isEditing} = this.props
         if(isEditing) return(
             <div className="addTodo_bottomButtonRow">
-                <div className="addTodo_bottomButtonRow_cancel" >
+                <div className="addTodo_bottomButtonRow_cancel" onClick={this.cancelEdit}>
                     <h2>Cancel</h2>
                 </div>
                 <div className="addTodo_bottomButtonRow_add" onClick={this.saveEdit}>
