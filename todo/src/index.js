@@ -49,6 +49,18 @@ class MainPage extends React.Component{
             todos: copyList
         })
     }
+    componentDidUpdate(prevProps,prevState){
+        // sort again after add todo
+        if(prevState.todos.length != this.state.todos.length){
+            let copyList = this.state.todos.slice()//copy array
+            copyList.sort((a, b) => {
+                return a.type - b.type
+            })
+            this.setState({
+                todos: copyList
+            })
+        }
+    }
     saveEdit(index,data,isCancel=false){
         if(isCancel){
             let nl = this.state.todos.slice()
