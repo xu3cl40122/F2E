@@ -15,6 +15,7 @@ class App extends React.Component{
         this.addTodo = this.addTodo.bind(this)
         this.cancelAdd = this.cancelAdd.bind(this)
         this.changeValue = this.changeValue.bind(this)
+        this.deleteTodo  = this.deleteTodo.bind(this)
     }
     addTodo(data){
         const {todos} = this.state
@@ -44,16 +45,31 @@ class App extends React.Component{
             todos: copyList
         })
     }
-    
+    deleteTodo(id){
+        console.log(id)
+        /*this.setState({
+            todos: this.state.todos.filter(todo => todo.id != id)
+        })*/
+        let l = this.state.todos.slice()
+        console.log(l)
+        let lf = l.filter(todo => todo.id != id)
+        console.log(lf)
+    }
     render(){
-        console.log(this.state)
+        console.log('state',this.state.todos)
         return(
             <div>
                 <Navbar />
                 <div className="container">
                     {!this.state.addHidden? null: <div className='showAddtodo_button' onClick={()=>{this.setState({addHidden:false})}}>Add Task</div>}
                     {this.state.addHidden ? null : <AddTodo addTodo={this.addTodo} cancelAdd={this.cancelAdd}/>}
-                    <ListTodo todos={this.state.todos} changeValue={this.changeValue} addTodo={this.addTodo}/>
+                    <ListTodo 
+                    todos={this.state.todos} 
+                    changeValue={this.changeValue} 
+                    addTodo={this.addTodo}
+                    deleteTodo={this.deleteTodo}
+                    cancelAdd={this.cancelAdd}
+                    />
                 </div>
             </div>
         )

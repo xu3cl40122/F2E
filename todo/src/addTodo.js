@@ -50,13 +50,15 @@ export class AddTodo extends React.Component {
                     date: todo.date,
                     time: todo.time,
                     comment: todo.comment,
-                    file:todo.file
+                    file:todo.file,
+                    id:todo.id
                 }
             })
         }
     }
     render() {
         const{todoData} = this.state
+        //console.log('add',this.props)
         return (
             <div>
                 <div className="addTodo_container">
@@ -96,9 +98,11 @@ export class AddTodo extends React.Component {
                         </div>
                     </div>
                     <BottomButton 
-                    isEditing={todoData.isEditing} 
+                    isEditing={todoData.isEditing}
+                    id={todoData.id} 
                     cancelAdd={this.handleCancel} 
-                    handleAdd={this.handleAdd}/>
+                    handleAdd={this.handleAdd}
+                    deleteTodo={this.props.deleteTodo}/>
                 </div>
             </div>
         )
@@ -108,6 +112,13 @@ export class AddTodo extends React.Component {
 class BottomButton extends React.Component {
     constructor(props) {
         super(props)
+        this.saveEdit = this.saveEdit.bind(this)
+    }
+    saveEdit(){
+        console.log('btn',this.props)
+        const { deleteTodo,handleAdd,id} = this.props
+        handleAdd()
+        deleteTodo(id)
     }
     render() {
         const{isEditing} = this.props
@@ -116,7 +127,7 @@ class BottomButton extends React.Component {
                 <div className="addTodo_bottomButtonRow_cancel" >
                     <h2>Cancel</h2>
                 </div>
-                <div className="addTodo_bottomButtonRow_add" onClick={this.props.handleAdd}>
+                <div className="addTodo_bottomButtonRow_add" onClick={this.saveEdit}>
                     <h2>+ Save</h2>
                 </div>
             </div>
