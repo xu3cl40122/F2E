@@ -58,7 +58,8 @@ export class AddTodo extends React.Component {
     }
     render() {
         const{todoData} = this.state
-        //console.log('add',this.props)
+        console.log(this.props)
+        console.log(todoData)
         return (
             <div>
                 <div className="addTodo_container">
@@ -100,9 +101,13 @@ export class AddTodo extends React.Component {
                     <BottomButton 
                     isEditing={todoData.isEditing}
                     id={todoData.id} 
+                    index ={this.props.index}
                     cancelAdd={this.handleCancel} 
                     handleAdd={this.handleAdd}
-                    deleteTodo={this.props.deleteTodo}/>
+                    deleteTodo={this.props.deleteTodo}
+                    saveEdit = {this.props.saveEdit}
+                    todo = {this.state.todoData}
+                    />
                 </div>
             </div>
         )
@@ -115,10 +120,11 @@ class BottomButton extends React.Component {
         this.saveEdit = this.saveEdit.bind(this)
     }
     saveEdit(){
-        console.log('btn',this.props)
-        const { deleteTodo,handleAdd,id} = this.props
-        handleAdd()
-        deleteTodo(id)
+        console.log(this.props.todo)
+        const { saveEdit,index,todo} = this.props
+        todo.isEditing = false
+        saveEdit(index,todo)
+        
     }
     render() {
         const{isEditing} = this.props

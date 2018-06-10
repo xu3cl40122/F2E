@@ -6,23 +6,25 @@ export class ListTodo extends React.Component {
         super(props)
     }
     render() {
-        const { todos, changeValue, addTodo, cancelAdd, deleteTodo} = this.props
+        const { todos, changeValue, addTodo, cancelAdd, deleteTodo, saveEdit} = this.props
         return (
             <div className="todoList_row">
-                {todos.map(todo =>{
+                {todos.map((todo,index) =>{
                     if (todo.isEditing){
                         return(
                             <AddTodo 
                             key={todo.id}
-                            id={todo.id} 
+                            id={todo.id}
+                            index={index} 
                             todo={todo} 
                             addTodo={addTodo} 
                             cancelAdd={cancelAdd}
+                            saveEdit={saveEdit}
                             deleteTodo={deleteTodo}/>
                         )
                     }
                     return(
-                        <TodoCol todo={todo} key={todo.id} id={todo.id} changeValue={changeValue}/>
+                        <TodoCol todo={todo} key={todo.id} index={index} id={todo.id} changeValue={changeValue}/>
                     )
                 })}
                 

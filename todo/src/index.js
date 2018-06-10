@@ -16,6 +16,7 @@ class App extends React.Component{
         this.cancelAdd = this.cancelAdd.bind(this)
         this.changeValue = this.changeValue.bind(this)
         this.deleteTodo  = this.deleteTodo.bind(this)
+        this.saveEdit = this.saveEdit.bind(this)
     }
     addTodo(data){
         const {todos} = this.state
@@ -45,6 +46,13 @@ class App extends React.Component{
             todos: copyList
         })
     }
+    saveEdit(index,data){
+        let nl = this.state.todos.slice()
+        nl[index] = data
+        this.setState({
+            todos:nl
+        })
+    }
     deleteTodo(id){
         console.log(id)
         /*this.setState({
@@ -69,6 +77,7 @@ class App extends React.Component{
                     addTodo={this.addTodo}
                     deleteTodo={this.deleteTodo}
                     cancelAdd={this.cancelAdd}
+                    saveEdit = {this.saveEdit}
                     />
                 </div>
             </div>
