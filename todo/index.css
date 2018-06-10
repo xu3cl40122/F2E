@@ -17,6 +17,9 @@ h2 {
 .displayNone {
   display: none;
 }
+.link {
+  text-decoration: none;
+}
 .navbarPlaceholder {
   width: 100%;
   height: 76px;

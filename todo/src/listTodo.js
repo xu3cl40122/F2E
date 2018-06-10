@@ -1,15 +1,25 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {AddTodo} from './addTodo'
-export class ListTodo extends React.Component {
+import {
+    withRouter
+} from 'react-router-dom'
+class List extends React.Component {
     constructor(props) {
         super(props)
     }
     render() {
-        const { todos, changeValue, addTodo, cancelAdd, deleteTodo, saveEdit} = this.props
+        const { todos, changeValue, addTodo, cancelAdd, deleteTodo, saveEdit,match} = this.props
+        console.log(match.params)
         return (
             <div className="todoList_row">
                 {todos.map((todo,index) =>{
+                    if(match.params.id == 'progress' & todo.type == 3){
+                        return
+                    }
+                    if(match.params.id == 'completed'& todo.type != 3){
+                        return
+                    }
                     if (todo.isEditing){
                         return(
                             <AddTodo 
@@ -32,7 +42,7 @@ export class ListTodo extends React.Component {
         )
     }
 }
-
+export const ListTodo = withRouter(List)
 class TodoCol extends React.Component{
     constructor(props){
         super(props)

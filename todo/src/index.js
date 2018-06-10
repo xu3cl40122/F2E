@@ -3,8 +3,11 @@ import ReactDOM from 'react-dom'
 import {Navbar} from './navbar'
 import {AddTodo} from './addTodo'
 import {ListTodo} from './listTodo'
-
-class App extends React.Component{
+import {
+    HashRouter as Router,
+    Route
+} from 'react-router-dom'
+class MainPage extends React.Component{
     constructor(props){
         super(props)
         this.state={
@@ -75,25 +78,36 @@ class App extends React.Component{
     render(){
         console.log('state',this.state.todos)
         return(
-            <div>
-                <Navbar />
-                <div className="container">
-                    {!this.state.addHidden? null: <div className='showAddtodo_button' onClick={()=>{this.setState({addHidden:false})}}>Add Task</div>}
-                    {this.state.addHidden ? null : <AddTodo addTodo={this.addTodo} cancelAdd={this.cancelAdd}/>}
-                    <ListTodo 
-                    todos={this.state.todos} 
-                    changeValue={this.changeValue} 
-                    addTodo={this.addTodo}
-                    deleteTodo={this.deleteTodo}
-                    cancelAdd={this.cancelAdd}
-                    saveEdit = {this.saveEdit}
-                    />
+                <div>
+                    <Navbar />
+                    <div className="container">
+                        {!this.state.addHidden? null: <div className='showAddtodo_button' onClick={()=>{this.setState({addHidden:false})}}>Add Task</div>}
+                        {this.state.addHidden ? null : <AddTodo addTodo={this.addTodo} cancelAdd={this.cancelAdd}/>}
+                        <ListTodo 
+                        todos={this.state.todos} 
+                        changeValue={this.changeValue} 
+                        addTodo={this.addTodo}
+                        deleteTodo={this.deleteTodo}
+                        cancelAdd={this.cancelAdd}
+                        saveEdit = {this.saveEdit}
+                        />
+                    </div>
                 </div>
-            </div>
         )
     }
 }
-
+class App extends React.Component{
+    constructor(props){
+        super(props)
+    }
+    render(){
+            return(
+                <Router >
+                    <Route path='/:id' component={MainPage} />
+                </Router >
+            )
+    }
+}
 
 
 ReactDOM.render(
