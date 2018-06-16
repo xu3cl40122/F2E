@@ -58,23 +58,30 @@ export class Navbar extends React.Component {
 class Row extends React.Component {
     constructor(props) {
         super(props)
+        this.state={
+            siteData:[]
+        }
     }
     componentDidMount(){
-        axios.get('https://data.kcg.gov.tw/api/action/datastore_search?resource_id=92290ee5-6e61-456f-80c0-249eae2fcc97')
-            .then(function (response) {
-                console.log(response);
+        // 用 arrow function this.setState 才會對
+        axios.get('https://data.kcg.gov.tw/api/action/datastore_search?resource_id=92290ee5-6e61-456f-80c0-249eae2fcc97&limit=300')
+            .then(response => {
+                this.setState({
+                    siteData:response.data.result.records
+                })
+            }).catch(err =>{
+                console.log(err)
             })
-            .catch(function (error) {
-                console.log(error);
-            });
     }
     render() {
+        console.log(this.state)
+        const {siteData} = this.state 
         return (
             <div className="main">
                 <div className="main_state_container">
                     <div>
-                        <p>Showing</p>
-                        <h2>15</h2>
+                        <p>Showing </p>
+                        <h2>{siteData.length}</h2>
                         <p> results by…</p>
                     </div>
                     <div className="main_state_row">
@@ -83,17 +90,31 @@ class Row extends React.Component {
                     </div>
                 </div>
                 <div className="main_row">
-                    <div className="main_col">
-                        <img src="https://i.imgur.com/prnyCW4.jpg" alt="" />
-                        <div className="main_col_inf">
-                            <h2>Kogi Cosby sweater.</h2>
-                            <div className="main_col_inf_text">Donec euismod scelerisque liguet t, tincidunt mattis lorem luctus id. Donec eget massa a diam condimentum pretium. Aliquam erat volutpat. Integer ut tincidunt orci. Etiam tristique, elit ut consectetur iaculis, metus lectus mattis justo, vel mollis eros neque quis augue..</div>
-                            <div className="main_col_inf_type">Entertainment</div>
-                            <div className="main_col_inf_site">
-                                <i className="fa fa-map-marker"></i><p>Kaohsiung City</p>
-                                <i className=" fa fa-calendar-o"></i><p>2018/5/24 - 2018/5/31</p>
-                            </div>
-                        </div>
+                    {siteData.map((site,index )=>{
+                        return <Col  data={site} key={index}/>
+                    })}
+                </div>
+            </div>
+        )
+    }
+}
+
+class Col extends React.Component{
+    constructor(props){
+        super(props)
+    }
+    render(){
+        const{data} = this.props
+        return(
+            <div className="main_col">
+                <img src={data.Picture1} alt="" />
+                <div className="main_col_inf">
+                    <h2>{data.Name}</h2>
+                    <div className="main_col_inf_text">{data.Description}</div>
+                    <div className="main_col_inf_type">Entertainment</div>
+                    <div className="main_col_inf_site">
+                        <i className="fa fa-map-marker"></i><p>{data.Zone}</p>
+                        <i className=" fa fa-calendar-o"></i><p>{data.Opentime}</p>
                     </div>
                 </div>
             </div>
