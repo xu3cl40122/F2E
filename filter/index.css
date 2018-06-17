@@ -22,6 +22,9 @@ input[type=text] {
 input[type=text]:focus {
   outline: none;
 }
+.link {
+  text-decoration: none;
+}
 .navbar {
   width: 100%;
   height: 70px;
@@ -30,6 +33,7 @@ input[type=text]:focus {
   display: flex;
   align-items: center;
   position: fixed;
+  z-index: 30;
 }
 .navbar .navbar_logo {
   font-size: 36px;
@@ -139,10 +143,17 @@ input[type=text]:focus {
   margin-bottom: 24px;
   background: #fff;
   display: flex;
+  box-shadow: 1px 1px 5px 1px rgba(0,0,0,0.1);
+  transition: box-shadow 0.2s ease-out;
+  transition: transform 0.2s ease-out;
 }
 .main .main_col img {
   width: 220px;
   height: 100%;
+}
+.main .main_col:hover {
+  box-shadow: 1px 1px 11px 2px rgba(0,0,0,0.2);
+  transform: translate(-2px, -2px);
 }
 .main .main_col_inf {
   width: calc(100% - 220px);
@@ -158,6 +169,7 @@ input[type=text]:focus {
   width: 100%;
   font-size: 16px;
   margin-bottom: 15px;
+  color: #000;
   max-height: 50px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -235,4 +247,24 @@ input[type=text]:focus {
   font-size: 20px;
   margin: 0 5px;
   color: #3e3d3d;
+}
+.main .content_inf_text {
+  letter-spacing: 0.1rem;
+}
+.main .content_goBack {
+  width: 100px;
+  height: 40px;
+  border: 1px solid #7828b4;
+  border-radius: 5px;
+  margin-right: 10px;
+  background: #7828b4;
+  font-size: 16px;
+  text-align: center;
+  line-height: 40px;
+  color: #fff;
+  margin-top: 20px;
+  cursor: pointer;
+}
+.main .content_goBack i {
+  margin-left: 5px;
 }

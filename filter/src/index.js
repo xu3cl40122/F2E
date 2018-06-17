@@ -15,7 +15,7 @@ class App extends React.Component{
         return(
             <Router>
                 <div>
-                    <Route path='/' component={Home} />
+                    <Route path='/:id' component={Home} />
                 </div>
             </Router>
         )
