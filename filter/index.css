@@ -189,3 +189,50 @@ input[type=text]:focus {
   margin: 0 5px;
   color: #3e3d3d;
 }
+.main .content_crumbs {
+  width: 100%;
+  height: 48px;
+  background: #ebebeb;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  border-radius: 4px;
+}
+.main .content_crumbs p {
+  color: #6f6f6f;
+  margin-right: 10px;
+}
+.main .content_crumbs_explore {
+  color: #7828b4;
+  font-size: 16px;
+  margin-right: 10px;
+}
+.main .content_img {
+  width: 100%;
+  display: block;
+}
+.main .content_container {
+  width: 100%;
+  background: #fff;
+  padding: 20px 40px;
+}
+.main .content_container h1 {
+  font-size: 36px;
+  color: #7828b4;
+  text-align: center;
+}
+.main .content_inf {
+  width: 100%;
+  margin: 15px 0;
+}
+.main .content_inf p {
+  display: inline;
+  color: #9b9b9b;
+  margin-right: 20px;
+}
+.main .content_inf i {
+  font-size: 20px;
+  margin: 0 5px;
+  color: #3e3d3d;
+}

@@ -1,5 +1,8 @@
 import React from 'react'
 import axios from 'axios-jsonp-pro'
+import {
+    withRouter
+} from 'react-router-dom'
 /*
 class Navbar extends React.Component {
     constructor(props) {
@@ -17,11 +20,12 @@ class Navbar extends React.Component {
         )
     }
 }*/
-export class Navbar extends React.Component {
+class NavHome extends React.Component {
     constructor(props) {
         super(props)
     }
     render() {
+        console.log(this.props.location)
         return (
             <div>
                 <div className="navbar">
@@ -49,63 +53,76 @@ export class Navbar extends React.Component {
                         <input type="checkbox" />Entertainment<br />
                     </div>
                 </div>
-                <Row />
+                <Row pathname={this.props.location.pathname} />
             </div>
         )
     }
 }
+
+export const Home = withRouter(NavHome)
 
 class Row extends React.Component {
     constructor(props) {
         super(props)
-        this.state={
-            siteData:[]
+        this.state = {
+            siteData: []
         }
     }
-    componentDidMount(){
+    componentDidMount() {
         // 用 arrow function this.setState 才會對
         axios.get('https://data.kcg.gov.tw/api/action/datastore_search?resource_id=92290ee5-6e61-456f-80c0-249eae2fcc97&limit=300')
             .then(response => {
                 this.setState({
-                    siteData:response.data.result.records
+                    siteData: response.data.result.records
                 })
-            }).catch(err =>{
+            }).catch(err => {
                 console.log(err)
             })
     }
     render() {
-        console.log(this.state)
-        const {siteData} = this.state 
-        return (
-            <div className="main">
-                <div className="main_state_container">
-                    <div>
-                        <p>Showing </p>
-                        <h2>{siteData.length}</h2>
-                        <p> results by…</p>
+        const { siteData } = this.state
+        const { pathname } = this.props
+        if (pathname == '/') {
+            return (
+                <div className="main">
+                    <div className="main_state_container">
+                        <div>
+                            <p>Showing </p>
+                            <h2>{siteData.length}</h2>
+                            <p> results by…</p>
+                        </div>
+                        <div className="main_state_row">
+                            <div className="main_state_col">Koahsiung<i className=" fa fa-close"></i></div>
+                            <div className="main_state_col">Taipei</div>
+                        </div>
                     </div>
-                    <div className="main_state_row">
-                        <div className="main_state_col">Koahsiung<i className=" fa fa-close"></i></div>
-                        <div className="main_state_col">Taipei</div>
+                    <div className="main_row">
+                        {siteData.map((site, index) => {
+                            return <Col data={site} key={index} index={index} />
+                        })}
                     </div>
                 </div>
-                <div className="main_row">
-                    {siteData.map((site,index )=>{
-                        return <Col  data={site} key={index}/>
-                    })}
+            )
+        }
+        else {
+            return (
+                <div className="main">
+                    <div className="main_row">
+                        <Content />
+                    </div>
                 </div>
-            </div>
-        )
+            )
+        }
     }
 }
 
-class Col extends React.Component{
-    constructor(props){
+class Col extends React.Component {
+    constructor(props) {
         super(props)
     }
-    render(){
-        const{data} = this.props
-        return(
+    render() {
+        const { data } = this.props
+        return (
             <div className="main_col">
                 <img src={data.Picture1} alt="" />
                 <div className="main_col_inf">
@@ -116,6 +133,33 @@ class Col extends React.Component{
                         <i className="fa fa-map-marker"></i><p>{data.Zone}</p>
                         <i className=" fa fa-calendar-o"></i><p>{data.Opentime}</p>
                     </div>
+                </div>
+            </div>
+        )
+    }
+}
+
+class Content extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+    render() {
+        return (
+            <div>
+                <div className='content_crumbs'>
+                    <h2 className='content_crumbs_explore'>Explore</h2>
+                    <p> / </p>
+                    <p>kgroekgos</p>
+                </div>
+                <img src="https://i.imgur.com/prnyCW4.jpg" alt="" className='content_img' />
+                <div className='content_container'>
+                    <h1>123</h1>
+                    <div className='content_inf'>
+                        <i className="fa fa-map-marker"></i><p>三民區</p>
+                        <i className=" fa fa-calendar-o"></i><p>全天開放</p>
+                    </div>
+                    <p>momgomagmamg'aml'a,v'a,v'plampoKF</p>
+
                 </div>
             </div>
         )

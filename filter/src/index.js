@@ -1,11 +1,23 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Navbar} from './navbar' 
+import { Home} from './navbar' 
+import {
+    HashRouter as Router,
+    Route,
+    Link
+} from 'react-router-dom'
+
+
+
 
 class App extends React.Component{
     render(){
         return(
-            <Navbar />
+            <Router>
+                <div>
+                    <Route path='/' component={Home} />
+                </div>
+            </Router>
         )
     }
 }
