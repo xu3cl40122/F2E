@@ -1,26 +1,12 @@
 import React from 'react'
 import axios from 'axios-jsonp-pro'
+import ReactPaginate from 'react-paginate';
 import {
     withRouter,
     Link
 } from 'react-router-dom'
-/*
-class Navbar extends React.Component {
-    constructor(props) {
-        super(props)
-    }
-    render() {
-        return (
-            <div className="navbar">
-                <h2 className="navbar_logo">HaveFun</h2>
-                <div className="navbar_search">
-                    <i className="fa fa-search"></i>
-                    <input type="text" className="navbar_search_input" placeholder="Explore your own activities" />
-                </div>
-            </div>
-        )
-    }
-}*/
+var Scroll = require('react-scroll');
+var scroll = Scroll.animateScroll;
 class NavHome extends React.Component {
     constructor(props) {
         super(props)
@@ -103,8 +89,17 @@ class Row77 extends React.Component {
         super(props)
         this.state = {
             siteData: [],
-            shouldCall: true
+            shouldCall: true,
+            currentPage: 1,
+            colPerPage: 10
         }
+        this.handlePage = this.handlePage.bind(this)
+    }
+    handlePage(data){
+        this.setState({
+            currentPage:(data.selected +1)
+        })
+        scroll.scrollToTop()
     }
     componentDidMount() {
         // 用 arrow function this.setState 才會對
@@ -120,8 +115,22 @@ class Row77 extends React.Component {
                 })
         }
     }
+    componentDidUpdate(prevProps){
+        // 換頁時確保會捲回頂部
+        if(prevProps.location.pathname !== this.props.location.pathname){
+            scroll.scrollToTop({duration:0})
+        }
+    }
     render() {
-        const { siteData } = this.state
+        const { siteData, currentPage, colPerPage } = this.state
+        // 分頁邏輯
+        const indexOfLast = currentPage * colPerPage
+        const indexOfFirst = indexOfLast - colPerPage
+        const currentList = siteData.slice(indexOfFirst, indexOfLast)
+        const pageNumbers = [];
+        for (let i = 1; i <= Math.ceil(siteData.length / colPerPage); i++) {
+            pageNumbers.push(i);
+        }
         if (this.props.match.params.id == 'main') {
             return (
                 <div className="main">
@@ -137,10 +146,24 @@ class Row77 extends React.Component {
                         </div>
                     </div>
                     <div className="main_row">
-                        {siteData.map((site, index) => {
+                        {currentList.map((site, index) => {
                             return <Col data={site} key={index} index={index} />
                         })}
                     </div>
+                    <ReactPaginate 
+                        previousLabel={"previous"}
+                        nextLabel={"next"}
+                        breakClassName={"subPage"}
+                        pageCount={pageNumbers.length}
+                        marginPagesDisplayed={1}
+                        pageRangeDisplayed={5}
+                        containerClassName={"pagination"}
+                        previousClassName='previous'
+                        nextClassName='next'
+                        pageLinkClassName={'subPage'}
+                        activeClassName={"active"}
+                        onPageChange={this.handlePage} />
+                    
                 </div>
             )
         }

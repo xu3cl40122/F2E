@@ -201,6 +201,10 @@ input[type=text]:focus {
   margin: 0 5px;
   color: #3e3d3d;
 }
+.main .main_pageContainer {
+  width: auto;
+  height: 40px;
+}
 .main .content_crumbs {
   width: 100%;
   height: 48px;
@@ -267,4 +271,39 @@ input[type=text]:focus {
 }
 .main .content_goBack i {
   margin-left: 5px;
+}
+.pagination {
+  display: inline-flex;
+  height: 35px;
+  border: 1px solid #d4d4d4;
+  padding: 0;
+  text-align: center;
+  line-height: 35px;
+  background: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.pagination li {
+  list-style: none;
+}
+.pagination .subPage {
+  display: block;
+  width: 2rem;
+  height: 100%;
+  border-right: 1px solid #d4d4d4;
+}
+.pagination .previous {
+  display: block;
+  height: 100%;
+  padding: 0 10px;
+  border-right: 1px solid #d4d4d4;
+}
+.pagination .next {
+  display: block;
+  height: 100%;
+  padding: 0 10px;
+}
+.pagination .active {
+  background: #7828b4;
+  color: #fff;
 }
