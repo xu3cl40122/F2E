@@ -1,0 +1,239 @@
+* {
+  box-sizing: border-box;
+}
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+html {
+  font-family: 'Roboto', sans-serif;
+}
+body {
+  background: #f2f2f2;
+}
+.link {
+  text-decoration: none;
+}
+.mainContainer {
+  margin: 0 auto;
+  max-width: 960px;
+  padding-top: 105px;
+}
+.navbar {
+  width: 100%;
+  height: 75px;
+  background: #000;
+  position: fixed;
+  z-index: 20;
+  text-align: center;
+}
+.navbar h2 {
+  color: #50ff44;
+  cursor: pointer;
+  line-height: 75px;
+  font-size: 36px;
+}
+.inf {
+  width: 100%;
+}
+.inf .topContainer {
+  width: 100%;
+  display: flex;
+}
+.inf .showCover {
+  width: 50%;
+  border: 4px solid #000;
+  background-size: cover;
+  background-position: center;
+}
+.inf .showCover img {
+  width: 100%;
+}
+.inf .inf {
+  width: 50%;
+}
+.inf .title {
+  width: 100%;
+  height: 52px;
+  font-size: 36px;
+  text-align: center;
+  line-height: 52px;
+  background: #000;
+  color: #fff;
+}
+.inf .bref {
+  width: 100%;
+  padding: 16px 0 16px 16px;
+}
+.inf .bref_col {
+  width: 100%;
+  padding: 5px 0px;
+}
+.inf .bref_col i {
+  margin-right: 5px;
+}
+.inf .category {
+  font-weight: bold;
+  display: inline-block;
+  width: 80px;
+}
+.inf .chapList {
+  width: 100%;
+  margin: 30px 0;
+}
+.inf .chap_title {
+  width: 180px;
+  height: 45px;
+  background: #000;
+  color: #fff;
+  font-size: 24px;
+  line-height: 45px;
+  text-align: center;
+}
+.inf .chap_row {
+  width: 100%;
+  border: 4px solid #000;
+  padding: 24px 0px;
+}
+.inf .chap_col {
+  width: 100%;
+  font-weight: bold;
+  height: 30px;
+  line-height: 30px;
+  transition: background, color 0.3s ease-out;
+  cursor: pointer;
+  padding: 0 24px;
+  color: #000;
+}
+.inf .chap_col:hover {
+  background: #000;
+  color: #fff;
+}
+.inf .newChap {
+  width: 55px;
+  height: 18px;
+  text-align: center;
+  background: #50ff44;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 18px;
+  margin-left: 10px;
+  border-radius: 3px;
+}
+.reading {
+  width: 100%;
+}
+.reading .controllBar {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+.reading .controllBar i {
+  margin: 0 8px;
+}
+.reading .controllBar select {
+  width: 130px;
+  height: 35px;
+  border: 2px solid #000;
+}
+.reading .controllBar_switch {
+  width: 100px;
+  display: flex;
+  height: 20px;
+  align-items: center;
+  position: absolute;
+  right: 0;
+}
+.reading .controllBar_switch_box {
+  height: 100%;
+  width: 60px;
+  border: 2px solid #000;
+}
+.reading .controllBar_switch_bar {
+  width: 50%;
+  height: 100%;
+  background: #000;
+}
+.reading .contentArea {
+  width: 100%;
+  display: flex;
+}
+.reading .contentArea img {
+  width: 90%;
+  display: block;
+}
+.reading .contentArea_arror {
+  width: 5%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background, color 0.3s ease-out;
+  justify-content: center;
+}
+.reading .contentArea_arror:hover {
+  color: #50ff44;
+  background: #000;
+}
+.reading .contentArea_arror i {
+  font-size: 60px;
+}
+.reading .pageSelector {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+.reading .page_row {
+  height: 180px;
+  overflow-x: scroll;
+  padding: 0 90px;
+  white-space: nowrap;
+  width: 90%;
+  margin: 0 auto;
+}
+.reading .page_col {
+  width: 80px;
+  margin: 0 10px;
+  text-align: center;
+  display: inline-block;
+  height: 100%;
+  filter: brightness(90%);
+}
+.reading .page_col p {
+  font-weight: bold;
+  margin-top: 10px;
+}
+.reading .page_col img {
+  width: 100%;
+  height: 120px;
+  display: block;
+}
+.reading .page_col-active {
+  filter: brightness(100%);
+}
+.reading .page_col-active img {
+  outline: 3px solid #000;
+}
+.reading .page_dark_left {
+  width: 80px;
+  height: 120px;
+  background: rgba(0,0,0,0.8);
+  display: inline-block;
+  position: absolute;
+  left: 5%;
+  top: 28px;
+  z-index: 10;
+}
+.reading .page_dark_right {
+  width: 80px;
+  height: 120px;
+  background: rgba(0,0,0,0.8);
+  display: inline-block;
+  position: absolute;
+  right: 5%;
+  top: 28px;
+  z-index: 10;
+}
