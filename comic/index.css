@@ -102,7 +102,7 @@ body {
   font-weight: bold;
   height: 30px;
   line-height: 30px;
-  transition: background, color 0.3s ease-out;
+  transition: color 0.3s ease-out, background 0.3s ease-out;
   cursor: pointer;
   padding: 0 24px;
   color: #000;
@@ -171,7 +171,7 @@ body {
   display: flex;
   align-items: center;
   cursor: pointer;
-  transition: background, color 0.3s ease-out;
+  transition: color 0.3s ease-out, background 0.3s ease-out;
   justify-content: center;
 }
 .reading .contentArea_arror:hover {
