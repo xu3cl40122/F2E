@@ -6,12 +6,46 @@ html
     font-family: 'Roboto', sans-serif;
 body 
     background #F2F2F2 
+img {
+  opacity: 1;
+  transition: opacity 0.3s;
+}
 
+img[data-src] {
+  opacity: 0;
+}
 // --- color --- 
 c_green = #50FF44 
 main_color = #000000 
 // --- var --- 
 navbar_hight = 75px
+// --- function ----  
+changeChap()
+    width w=80px 
+    height h=120px
+    background c_green
+    display inline-block
+    position absolute
+    top 28px
+    z-index 10
+    line-height h  
+    text-align center
+    font-size 36px
+    font-weight 900
+    &:hover
+        &:before 
+            content attr(data-text)
+            position absolute
+            -webkit-clip-path: polygon(0 0, 100% 0, 100% 45%, 60% 45%, 51% 55%, 40% 45%, 1% 45%);
+            clip-path: polygon(0 0, 100% 0, 100% 45%, 60% 45%, 51% 55%, 40% 45%, 1% 45%);
+            background c_green
+            top -50px
+            height 60%
+            left -10px
+            width 100px
+            font-size 24px
+            padding-top 10px
+            line-height 50%
 
 //---global class---
 .link 
@@ -21,6 +55,7 @@ navbar_hight = 75px
     margin 0 auto 
     max-width 960px
     padding-top (navbar_hight+30px)
+
 .navbar 
     width 100% 
     height navbar_hight
@@ -190,6 +225,9 @@ navbar_hight = 75px
         left 5%
         top 28px
         z-index 10
+    .page_dark_prevChap 
+        left 5%
+        changeChap()
     .page_dark_right 
         width 80px 
         height 120px
@@ -199,6 +237,7 @@ navbar_hight = 75px
         right 5%
         top 28px
         z-index 10
-
-
+    .page_dark_nextChap
+        right 5%
+        changeChap()
     

@@ -13,6 +13,13 @@ html {
 body {
   background: #f2f2f2;
 }
+img {
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+img[data-src] {
+  opacity: 0;
+}
 .link {
   text-decoration: none;
 }
@@ -227,6 +234,34 @@ body {
   top: 28px;
   z-index: 10;
 }
+.reading .page_dark_prevChap {
+  left: 5%;
+  width: 80px;
+  height: 120px;
+  background: #50ff44;
+  display: inline-block;
+  position: absolute;
+  top: 28px;
+  z-index: 10;
+  line-height: 120px;
+  text-align: center;
+  font-size: 36px;
+  font-weight: 900;
+}
+.reading .page_dark_prevChap:hover:before {
+  content: attr(data-text);
+  position: absolute;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 45%, 60% 45%, 51% 55%, 40% 45%, 1% 45%);
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 60% 45%, 51% 55%, 40% 45%, 1% 45%);
+  background: #50ff44;
+  top: -50px;
+  height: 60%;
+  left: -10px;
+  width: 100px;
+  font-size: 24px;
+  padding-top: 10px;
+  line-height: 50%;
+}
 .reading .page_dark_right {
   width: 80px;
   height: 120px;
@@ -236,4 +271,32 @@ body {
   right: 5%;
   top: 28px;
   z-index: 10;
+}
+.reading .page_dark_nextChap {
+  right: 5%;
+  width: 80px;
+  height: 120px;
+  background: #50ff44;
+  display: inline-block;
+  position: absolute;
+  top: 28px;
+  z-index: 10;
+  line-height: 120px;
+  text-align: center;
+  font-size: 36px;
+  font-weight: 900;
+}
+.reading .page_dark_nextChap:hover:before {
+  content: attr(data-text);
+  position: absolute;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 45%, 60% 45%, 51% 55%, 40% 45%, 1% 45%);
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 60% 45%, 51% 55%, 40% 45%, 1% 45%);
+  background: #50ff44;
+  top: -50px;
+  height: 60%;
+  left: -10px;
+  width: 100px;
+  font-size: 24px;
+  padding-top: 10px;
+  line-height: 50%;
 }
