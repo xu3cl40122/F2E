@@ -8,12 +8,14 @@ export class Reading extends React.Component {
         super(props)
         this.state = {
             comicData : comicData,
-            indexNow:0
+            indexNow:0,
+            isDark:false
 
         }
         this.setIndex = this.setIndex.bind(this)
         this.selectChange = this.selectChange.bind(this)
         this.showChangeChap = this.showChangeChap.bind(this)
+        this.switchSkin = this.switchSkin.bind(this)
     }
     setIndex(indexToSet){
         const{indexNow} = this.state
@@ -42,14 +44,20 @@ export class Reading extends React.Component {
             [e.target.name]:e.target.value
         })
     }
+
     showChangeChap(prev,next){
         this.setState({
             showPrev:prev,
             showNext:next
         })
     }
+    switchSkin(){
+        this.setState({
+            isDark:!this.state.isDark
+        })
+    }
     render() {
-        const{comicData, indexNow,showNext,showPrev} = this.state
+        const{comicData, indexNow,showNext,showPrev,isDark} = this.state
         return (
             <div className='mainContainer'>
                 <div className='reading'>
@@ -69,8 +77,8 @@ export class Reading extends React.Component {
                         </select>
                         <div className='controllBar_switch'>
                             <i className='fa fa-sun-o'></i>
-                            <div className='controllBar_switch_box'>
-                                <div className='controllBar_switch_bar'></div>
+                            <div className='controllBar_switch_box' onClick={this.switchSkin}>
+                                {isDark ? <div className='controllBar_switch_bar' style={{ 'marginLeft': '50%' }}></div> : <div className='controllBar_switch_bar'></div>}
                             </div>
                             <i className='	fa fa-moon-o'></i>
                         </div>

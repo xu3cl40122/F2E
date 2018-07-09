@@ -159,11 +159,13 @@ img[data-src] {
   height: 100%;
   width: 60px;
   border: 2px solid #000;
+  position: relative;
 }
 .reading .controllBar_switch_bar {
   width: 50%;
   height: 100%;
   background: #000;
+  transition: margin 0.3s ease-out;
 }
 .reading .contentArea {
   width: 100%;
