@@ -23,11 +23,6 @@ img[data-src] {
 .link {
   text-decoration: none;
 }
-.mainContainer {
-  margin: 0 auto;
-  max-width: 960px;
-  padding-top: 105px;
-}
 .navbar {
   width: 100%;
   height: 75px;
@@ -42,26 +37,31 @@ img[data-src] {
   line-height: 75px;
   font-size: 36px;
 }
-.inf {
+.mainContainer {
+  margin: 0 auto;
+  max-width: 960px;
+  padding-top: 105px;
+}
+.mainContainer .inf {
   width: 100%;
 }
-.inf .topContainer {
+.mainContainer .inf .topContainer {
   width: 100%;
   display: flex;
 }
-.inf .showCover {
+.mainContainer .inf .showCover {
   width: 50%;
   border: 4px solid #000;
   background-size: cover;
   background-position: center;
 }
-.inf .showCover img {
+.mainContainer .inf .showCover img {
   width: 100%;
 }
-.inf .inf {
+.mainContainer .inf .inf {
   width: 50%;
 }
-.inf .title {
+.mainContainer .inf .title {
   width: 100%;
   height: 52px;
   font-size: 36px;
@@ -70,27 +70,27 @@ img[data-src] {
   background: #000;
   color: #fff;
 }
-.inf .bref {
+.mainContainer .inf .bref {
   width: 100%;
   padding: 16px 0 16px 16px;
 }
-.inf .bref_col {
+.mainContainer .inf .bref_col {
   width: 100%;
   padding: 5px 0px;
 }
-.inf .bref_col i {
+.mainContainer .inf .bref_col i {
   margin-right: 5px;
 }
-.inf .category {
+.mainContainer .inf .category {
   font-weight: bold;
   display: inline-block;
   width: 80px;
 }
-.inf .chapList {
+.mainContainer .inf .chapList {
   width: 100%;
   margin: 30px 0;
 }
-.inf .chap_title {
+.mainContainer .inf .chap_title {
   width: 180px;
   height: 45px;
   background: #000;
@@ -99,12 +99,12 @@ img[data-src] {
   line-height: 45px;
   text-align: center;
 }
-.inf .chap_row {
+.mainContainer .inf .chap_row {
   width: 100%;
   border: 4px solid #000;
   padding: 24px 0px;
 }
-.inf .chap_col {
+.mainContainer .inf .chap_col {
   width: 100%;
   font-weight: bold;
   height: 30px;
@@ -114,11 +114,11 @@ img[data-src] {
   padding: 0 24px;
   color: #000;
 }
-.inf .chap_col:hover {
+.mainContainer .inf .chap_col:hover {
   background: #000;
   color: #fff;
 }
-.inf .newChap {
+.mainContainer .inf .newChap {
   width: 55px;
   height: 18px;
   text-align: center;
@@ -129,25 +129,25 @@ img[data-src] {
   margin-left: 10px;
   border-radius: 3px;
 }
-.reading {
+.mainContainer .reading {
   width: 100%;
 }
-.reading .controllBar {
+.mainContainer .reading .controllBar {
   width: 100%;
   height: 60px;
   display: flex;
   position: relative;
   align-items: center;
 }
-.reading .controllBar i {
+.mainContainer .reading .controllBar i {
   margin: 0 8px;
 }
-.reading .controllBar select {
+.mainContainer .reading .controllBar select {
   width: 130px;
   height: 35px;
   border: 2px solid #000;
 }
-.reading .controllBar_switch {
+.mainContainer .reading .controllBar_switch {
   width: 100px;
   display: flex;
   height: 20px;
@@ -155,27 +155,27 @@ img[data-src] {
   position: absolute;
   right: 0;
 }
-.reading .controllBar_switch_box {
+.mainContainer .reading .controllBar_switch_box {
   height: 100%;
   width: 60px;
   border: 2px solid #000;
   position: relative;
 }
-.reading .controllBar_switch_bar {
+.mainContainer .reading .controllBar_switch_bar {
   width: 50%;
   height: 100%;
   background: #000;
   transition: margin 0.3s ease-out;
 }
-.reading .contentArea {
+.mainContainer .reading .contentArea {
   width: 100%;
   display: flex;
 }
-.reading .contentArea img {
+.mainContainer .reading .contentArea img {
   width: 90%;
   display: block;
 }
-.reading .contentArea_arror {
+.mainContainer .reading .contentArea_arror {
   width: 5%;
   display: flex;
   align-items: center;
@@ -183,19 +183,19 @@ img[data-src] {
   transition: color 0.3s ease-out, background 0.3s ease-out;
   justify-content: center;
 }
-.reading .contentArea_arror:hover {
+.mainContainer .reading .contentArea_arror:hover {
   color: #50ff44;
   background: #000;
 }
-.reading .contentArea_arror i {
+.mainContainer .reading .contentArea_arror i {
   font-size: 60px;
 }
-.reading .pageSelector {
+.mainContainer .reading .pageSelector {
   width: 100%;
   margin: 0 auto;
   position: relative;
 }
-.reading .page_row {
+.mainContainer .reading .page_row {
   height: 180px;
   overflow-x: scroll;
   padding: 0 90px;
@@ -203,7 +203,7 @@ img[data-src] {
   width: 90%;
   margin: 0 auto;
 }
-.reading .page_col {
+.mainContainer .reading .page_col {
   width: 80px;
   margin: 0 10px;
   text-align: center;
@@ -211,22 +211,22 @@ img[data-src] {
   height: 100%;
   filter: brightness(90%);
 }
-.reading .page_col p {
+.mainContainer .reading .page_col p {
   font-weight: bold;
   margin-top: 10px;
 }
-.reading .page_col img {
+.mainContainer .reading .page_col img {
   width: 100%;
   height: 120px;
   display: block;
 }
-.reading .page_col-active {
+.mainContainer .reading .page_col-active {
   filter: brightness(100%);
 }
-.reading .page_col-active img {
+.mainContainer .reading .page_col-active img {
   outline: 3px solid #000;
 }
-.reading .page_dark_left {
+.mainContainer .reading .page_dark_left {
   width: 80px;
   height: 120px;
   background: rgba(0,0,0,0.8);
@@ -236,7 +236,7 @@ img[data-src] {
   top: 28px;
   z-index: 10;
 }
-.reading .page_dark_prevChap {
+.mainContainer .reading .page_dark_prevChap {
   left: 5%;
   width: 80px;
   height: 120px;
@@ -250,7 +250,7 @@ img[data-src] {
   font-size: 36px;
   font-weight: 900;
 }
-.reading .page_dark_prevChap:hover:before {
+.mainContainer .reading .page_dark_prevChap:hover:before {
   content: attr(data-text);
   position: absolute;
   -webkit-clip-path: polygon(0 0, 100% 0, 100% 45%, 60% 45%, 51% 55%, 40% 45%, 1% 45%);
@@ -264,7 +264,7 @@ img[data-src] {
   padding-top: 10px;
   line-height: 50%;
 }
-.reading .page_dark_right {
+.mainContainer .reading .page_dark_right {
   width: 80px;
   height: 120px;
   background: rgba(0,0,0,0.8);
@@ -274,7 +274,7 @@ img[data-src] {
   top: 28px;
   z-index: 10;
 }
-.reading .page_dark_nextChap {
+.mainContainer .reading .page_dark_nextChap {
   right: 5%;
   width: 80px;
   height: 120px;
@@ -288,7 +288,7 @@ img[data-src] {
   font-size: 36px;
   font-weight: 900;
 }
-.reading .page_dark_nextChap:hover:before {
+.mainContainer .reading .page_dark_nextChap:hover:before {
   content: attr(data-text);
   position: absolute;
   -webkit-clip-path: polygon(0 0, 100% 0, 100% 45%, 60% 45%, 51% 55%, 40% 45%, 1% 45%);

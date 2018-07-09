@@ -58,6 +58,7 @@ export class Reading extends React.Component {
     }
     render() {
         const{comicData, indexNow,showNext,showPrev,isDark} = this.state
+        
         return (
             <div className='mainContainer'>
                 <div className='reading'>
