@@ -205,7 +205,7 @@ class PageCol extends React.Component{
             <LazyLoad height='163px'>
             <div className={index == indexNow ? 'page_col page_col-active' : 'page_col'} onClick={this.setIndex}>
                 <p>{index + 1}</p>
-                <img src={'../pic/' + page} alt="" />
+                <img src={'./pic/' + page} alt="" />
             </div>
             </LazyLoad>
         )
