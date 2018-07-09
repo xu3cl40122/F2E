@@ -9,7 +9,7 @@ export class Inf extends React.Component {
                 <div className='inf'>
                     <div className='topContainer'>
                         <div className='showCover'>
-                            <img src="../pic/comic cover.png" alt=""/>
+                            <img src="../pic/cover.png" alt=""/>
                         </div>
                         <div className='inf'>
                             <div className='title'>MY HEXSCHOOL</div>
