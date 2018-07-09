@@ -88,7 +88,7 @@ export class Reading extends React.Component {
                         <div className='contentArea_arror' onClick={()=>this.setIndex('prev')}>
                             <i className='	fa fa-angle-left'></i>
                         </div>
-                        <img src={'../pic/' + comicData[indexNow]} alt="" />
+                        <img src={'./pic/' + comicData[indexNow]} alt="" />
                         <div className='contentArea_arror' onClick={() => this.setIndex('next')}>
                             <i className='	fa fa-angle-right'></i>
                         </div>
