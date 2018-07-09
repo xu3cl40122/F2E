@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom';
 import LazyLoad from 'react-lazyload'
 import comicData from './data'
-import comic_data from './data';
+import comic_data from './data'
 export class Reading extends React.Component {
     constructor(props){
         super(props)
