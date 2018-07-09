@@ -1,0 +1,251 @@
+* 
+    box-sizing border-box
+h1,h2,h3,p
+    margin 0 
+html 
+    font-family: 'Roboto', sans-serif;
+    
+body 
+    background #F2F2F2 
+    
+img {
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+img[data-src] {
+  opacity: 0;
+}
+// --- color --- 
+c_green = #50FF44 
+main_color = #000000 
+// --- var --- 
+navbar_hight = 75px
+// --- function ----  
+changeChap()
+    width w=80px 
+    height h=120px
+    background c_green
+    display inline-block
+    position absolute
+    top 28px
+    z-index 10
+    line-height h  
+    text-align center
+    font-size 36px
+    font-weight 900
+    &:hover
+        &:before 
+            content attr(data-text)
+            position absolute
+            -webkit-clip-path: polygon(0 0, 100% 0, 100% 45%, 60% 45%, 51% 55%, 40% 45%, 1% 45%);
+            clip-path: polygon(0 0, 100% 0, 100% 45%, 60% 45%, 51% 55%, 40% 45%, 1% 45%);
+            background c_green
+            top -50px
+            height 60%
+            left -10px
+            width 100px
+            font-size 24px
+            padding-top 10px
+            line-height 50%
+
+//---global class---
+.link 
+    text-decoration none
+// --- class --- 
+
+.navbar 
+    width 100% 
+    height navbar_hight
+    background main_color 
+    position fixed 
+    z-index 20
+    text-align center
+    h2 
+        color c_green
+        cursor pointer
+        line-height navbar_hight
+        font-size 36px
+
+.mainContainer
+    margin 0 auto 
+    max-width 960px
+    padding-top (navbar_hight+30px)
+
+    .inf 
+        width 100% 
+        .topContainer 
+            width 100% 
+            display flex 
+        .showCover 
+            width 50% 
+            border 4px solid main_color
+            background-size cover
+            background-position center
+            img 
+                width 100%
+        .inf 
+            width 50%
+        .title 
+            width 100% 
+            height h = 52px 
+            font-size 36px 
+            text-align center 
+            line-height h
+            background main_color
+            color white
+        .bref 
+            width 100% 
+            padding 16px 0 16px 16px
+        .bref_col 
+            width 100% 
+            padding 5px 0px
+            i  
+                margin-right 5px
+        .category 
+            font-weight bold
+            display inline-block
+            width 80px
+        .chapList 
+            width 100% 
+            margin 30px 0
+        .chap_title 
+            width 180px 
+            height h=45px 
+            background main_color
+            color white
+            font-size 24px 
+            line-height h
+            text-align center
+        .chap_row 
+            width 100% 
+            border 4px solid main_color
+            padding 24px 0px
+        .chap_col 
+            width 100%
+            font-weight bold 
+            height h = 30px
+            line-height h
+            transition color 0.3s ease-out, background 0.3s ease-out
+            cursor pointer
+            padding 0 24px
+            color main_color
+            &:hover 
+                background main_color
+                color white 
+        .newChap 
+            width 55px
+            height h = 18px 
+            text-align center
+            background c_green
+            display inline-block
+            font-size 14px
+            line-height h 
+            margin-left 10px
+            border-radius 3px
+    .reading
+        width 100%
+        .controllBar
+            width 100%
+            height 60px 
+            display flex 
+            position relative
+            align-items center
+            i 
+                margin 0 8px
+            select
+                width 130px 
+                height 35px 
+                border 2px solid main_color
+        .controllBar_switch
+            width 100px 
+            display flex
+            height 20px
+            align-items: center
+            position absolute
+            right 0
+        .controllBar_switch_box
+            height 100%
+            width 60px
+            border 2px solid main_color
+            position relative
+            
+        .controllBar_switch_bar 
+            width 50% 
+            height 100%
+            background main_color
+            transition margin 0.3s ease-out
+
+        .contentArea 
+            width 100%
+            display flex
+            img 
+                width 90%
+                display block
+        .contentArea_arror 
+            width 5% 
+            display flex
+            align-items center
+            cursor pointer
+            transition color 0.3s ease-out, background 0.3s ease-out
+            justify-content center
+            &:hover 
+                color c_green 
+                background main_color
+            i  
+                font-size 60px
+        .pageSelector 
+            width 100%
+            margin 0 auto
+            position relative
+            
+        .page_row
+            height 180px 
+            overflow-x scroll
+            padding 0 90px
+            white-space: nowrap
+            width 90%
+            margin 0 auto
+        .page_col 
+            width 80px 
+            margin 0 10px
+            text-align center
+            display inline-block
+            height 100%
+            filter brightness(90%)
+            p  
+                font-weight bold
+                margin-top 10px
+            img 
+                width 100%
+                height 120px
+                display block
+        .page_col-active
+            filter brightness(100%) 
+            img 
+                outline 3px solid black //outline 會加在 div 外
+        .page_dark_left 
+            width 80px 
+            height 120px
+            background rgba(0,0,0,0.8)
+            display inline-block
+            position absolute
+            left 5%
+            top 28px
+            z-index 10
+        .page_dark_prevChap 
+            left 5%
+            changeChap()
+        .page_dark_right 
+            width 80px 
+            height 120px
+            background rgba(0,0,0,0.8)
+            display inline-block
+            position absolute
+            right 5%
+            top 28px
+            z-index 10
+        .page_dark_nextChap
+            right 5%
+            changeChap()
+        
