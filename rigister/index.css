@@ -1,0 +1,107 @@
+* {
+  box-sizing: border-box;
+}
+h1,
+h2,
+p {
+  margin: 0;
+  font-weight: 100;
+}
+html {
+  font-family: 'Roboto', sans-serif;
+}
+form {
+  width: 100%;
+}
+.mainContainer {
+  width: 600px;
+  margin: 0 auto;
+  padding-bottom: 50px;
+}
+.progressbar {
+  width: 100%;
+  border-top: 5px solid #0275d8;
+  padding: 40px 0;
+  text-align: center;
+}
+.progressbar h1 {
+  font-size: 48px;
+}
+.progressbar img {
+  width: 200px;
+}
+.formContainer {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.formContainer input[type='text'],
+.formContainer input[type='email'],
+.formContainer input[type='password'] {
+  border: 2px solid #000;
+  border-radius: 8px;
+  height: 50px;
+  font-size: 20px;
+  padding: 5px 20px;
+  width: 100%;
+}
+.formContainer input[type='text']:focus,
+.formContainer input[type='email']:focus,
+.formContainer input[type='password']:focus {
+  outline: none;
+  border-color: #0275d8;
+}
+.formContainer input[type='text']::placeholder,
+.formContainer input[type='email']::placeholder,
+.formContainer input[type='password']::placeholder {
+  color: #999;
+}
+.formContainer .submit {
+  width: 100%;
+  height: 50px;
+  border-radius: 8px;
+  background: #bee1ff;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+}
+.formContainer .form_col-big {
+  width: 100%;
+  padding-bottom: 30px;
+}
+.formContainer .form_col-big h2 {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+.formContainer .form_col-middle {
+  padding-bottom: 30px;
+  width: calc(95% / 2);
+}
+.formContainer .form_col-middle h2 {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+.formContainer .dragArea {
+  width: 100%;
+  height: 160px;
+  border: 2px solid #000;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9b9b9b;
+}
+.formContainer .dragArea i {
+  font-size: 48px;
+}
+.formContainer .dragArea_hint {
+  margin-left: 20px;
+}
+.formContainer .dragArea_hint h2 {
+  font-size: 20px;
+}
+.formContainer .dragArea_hint p {
+  font-size: 16px;
+}
