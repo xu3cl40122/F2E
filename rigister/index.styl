@@ -33,12 +33,31 @@ formCol()
         font-size 48px
     img     
         width 200px
+    .bar 
+        width 50%
+        margin 0 auto
+        display flex 
+        align-items: center
+        padding 50px 0
+        color light_main
+        position relative
+        i  
+            font-size 20px
+    .line 
+        width calc((100% -80px)/3) 
+        height 2px 
+        background light_main
+    .done 
+        color dark_main
+    .line.done
+        background dark_main
+    
 .formContainer
     width 100%
     display flex  
     flex-wrap: wrap
     justify-content: space-between
-    input[type='text'], input[type='email'],input[type='password']
+    input,select
         border 2px solid black
         border-radius 8px
         height 50px 
@@ -50,6 +69,9 @@ formCol()
             border-color dark_main
         &::placeholder 
             color #999999  
+    option 
+        border 2px solid black
+        border-radius 8px
     .submit
         width 100%
         height 50px 
@@ -66,6 +88,9 @@ formCol()
     .form_col-middle 
         formCol()
         width calc(95%/2)
+    .form_col-small 
+        formCol()
+        width calc(90%/3)
     .dragArea 
         width 100% 
         height 160px 
@@ -83,5 +108,7 @@ formCol()
             font-size 20px 
         p  
             font-size 16px
+    .hidden 
+        visibility hidden
 
 

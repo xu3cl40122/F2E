@@ -30,15 +30,37 @@ form {
 .progressbar img {
   width: 200px;
 }
+.progressbar .bar {
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  padding: 50px 0;
+  color: #bee1ff;
+  position: relative;
+}
+.progressbar .bar i {
+  font-size: 20px;
+}
+.progressbar .line {
+  width: calc((100% -80px) / 3);
+  height: 2px;
+  background: #bee1ff;
+}
+.progressbar .done {
+  color: #0275d8;
+}
+.progressbar .line.done {
+  background: #0275d8;
+}
 .formContainer {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
-.formContainer input[type='text'],
-.formContainer input[type='email'],
-.formContainer input[type='password'] {
+.formContainer input,
+.formContainer select {
   border: 2px solid #000;
   border-radius: 8px;
   height: 50px;
@@ -46,16 +68,18 @@ form {
   padding: 5px 20px;
   width: 100%;
 }
-.formContainer input[type='text']:focus,
-.formContainer input[type='email']:focus,
-.formContainer input[type='password']:focus {
+.formContainer input:focus,
+.formContainer select:focus {
   outline: none;
   border-color: #0275d8;
 }
-.formContainer input[type='text']::placeholder,
-.formContainer input[type='email']::placeholder,
-.formContainer input[type='password']::placeholder {
+.formContainer input::placeholder,
+.formContainer select::placeholder {
   color: #999;
+}
+.formContainer option {
+  border: 2px solid #000;
+  border-radius: 8px;
 }
 .formContainer .submit {
   width: 100%;
@@ -83,6 +107,14 @@ form {
   font-size: 20px;
   margin-bottom: 5px;
 }
+.formContainer .form_col-small {
+  padding-bottom: 30px;
+  width: calc(90% / 3);
+}
+.formContainer .form_col-small h2 {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
 .formContainer .dragArea {
   width: 100%;
   height: 160px;
@@ -104,4 +136,7 @@ form {
 }
 .formContainer .dragArea_hint p {
   font-size: 16px;
+}
+.formContainer .hidden {
+  visibility: hidden;
 }

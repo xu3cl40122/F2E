@@ -23,7 +23,9 @@ class App extends React.Component {
             <Router>
                 <div>
                     <Route exact path='/' component={Main} />
-                    <Route exact path='/upload' component={Main} />    
+                    <Route exact path='/upload' component={Main} /> 
+                    <Route exact path='/payment' component={Main} />
+                    <Route exact path='/inf' component={Main} />     
                 </div>
                 
             </Router>
