@@ -7,26 +7,67 @@ import {
 class Form extends React.Component {
     constructor(props) {
         super(props)
+        this.state={
+            account:{
+                email:'',
+                password:'',
+                checkPassword:'',
+                fillAll:false
+            },
+            
+        }
+        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleChange = this.handleChange.bind(this)
+
     }
+    handleSubmit(e){
+        const { account } = this.state
+        e.preventDefault
+        
+    }
+    componentDidUpdate(prevProps,prevState){
+        const{account}= this.state
+        if(account !=prevState.account){
+            
+            for (var key in account) {
+                console.log(account[key])
+                if (account[key] === '') {
+                    console.log('nopass')
+                    return
+                }
+            }
+            this.setState({
+                account:{...account,fillAll:true}
+            })
+        }
+        
+    }
+    handleChange(e){
+        this.setState({
+            account:{...this.state.account,[e.target.name]:e.target.value}
+        })
+    }
+   
     render() {
         const { location } = this.props
+        const{account,fillAll}= this.state
         if (location.pathname == '/') {
             return (
                 <form action="">
                     <div className='formContainer'>
                         <div className='form_col-big '>
                             <h2>Account</h2>
-                            <input type="email" placeholder='example@email.com' required />
+                            <input type="email" placeholder='example@email.com' name='email'value={account.email} onChange={this.handleChange} required />
                         </div>
                         <div className='form_col-big '>
                             <h2>Password</h2>
-                            <input type="password" placeholder='' required />
+                            <input type="password" placeholder='' value={account.password} name='password' onChange={this.handleChange} required />
                         </div>
                         <div className='form_col-big '>
                             <h2>Confirm Password</h2>
-                            <input type="password" required />
+                            <input type="password" value={account.checkPassword} name='checkPassword'onChange={this.handleChange} required />
                         </div>
-                        <input type="submit" className='submit' value='SUBMIT & NEXT' />
+                        {fillAll ? <Link to='/inf' class='link'><input type="submit" className='submit submit-pass' value='SUBMIT & NEXT' /></Link> : <input type="submit" className='submit' value='SUBMIT & NEXT' onClick={this.handleSubmit} />}
                     </div>
                 </form>
 
@@ -132,12 +173,12 @@ class Drag extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            src:''
+            srcList:[]
         }
         this.onDrageOver = this.onDrageOver.bind(this)
         this.onDrop = this.onDrop.bind(this)
         this.onDragEnter = this.onDragEnter.bind(this)
-        
+        this.deleteImg= this.deleteImg.bind(this)
     }
     /*componentDidMount(){
         var self = ReactDOM.findDOMNode(this)
@@ -158,25 +199,59 @@ class Drag extends React.Component {
     onDrop(e){
         e.preventDefault()
         e.stopPropagation()
-        e.dataTransfer.dropEffect = 'copy'
-        console.log('drop')
-        console.log(e.nativeEvent.dataTransfer.files)
+        const file = e.nativeEvent.dataTransfer.files[0]
+        if (this.state.srcList.length == 3) {
+            alert('最多只能傳三張相片!')
+            return
+        }
+        if(file.size > 10000000 ){
+            alert('不能超過10MB')
+            return 
+        }
+        if(file.type != 'image/jpeg' | file.type != 'image/png'){
+            alert('只接受 jpg 或 png 檔')
+            return
+        }
         var reader = new FileReader()
+        console.log(e.nativeEvent.dataTransfer.files[0])
         reader.readAsDataURL(e.nativeEvent.dataTransfer.files[0])
+        // 非同步
         reader.onload = (data)=> {
+            
             this.setState({
-                src:data.target.result
+                srcList:[...this.state.srcList,data.target.result]
             })
         }
     }
-    
+    deleteImg(toRemove){
+        const {srcList} = this.state
+        let newList = srcList.filter((src,index)=>{
+            return index != toRemove
+        })
+        this.setState({
+            srcList : newList
+        })
+    }
     render() {
+        const {srcList} = this.state
+        console.log(srcList)
         return (
             // --- 需要加 onDragOver那串 才能觸發 onDrop 奇怪的 bug ----
-            <div className='dragArea' onDragEnter={this.onDragEnter} onDragOver={this.onDrageOver} onDrop={this.onDrop} onChange={()=>{console.log('ch')}}>
-                <i className='	fa fa-image'></i>
-                <div className='dragArea_hint'><h2>UPLOAD UP TO 3 PHOTOS</h2><p>MAX SIZE: 150*150px</p></div>
-                <img src={this.state.src}/>
+            <div className='dragAreaContainer'>
+                <div className='dragArea' onDragEnter={this.onDragEnter} onDragOver={this.onDrageOver} onDrop={this.onDrop} onChange={()=>{console.log('ch')}}>
+                    <i className='	fa fa-image'></i>
+                    <div className='dragArea_hint'><h2>DRAG TO UPLOAD UP TO 3 PHOTOS</h2><p>MAX SIZE: 10MB</p></div>
+                    
+                </div>
+                <div className='preview'>
+                    {srcList.map((src,index)=>{
+                        return(
+                            <div key={index}className='preview_col'><img src={src} alt="" /><div className='preview_col_delete'><i onClick={()=>this.deleteImg(index)} className='	fa fa-trash'></i></div></div>
+                        )
+                    })}
+                    <div className='preview_col-null'></div>
+                    <div className='preview_col-null'></div>
+                </div>
             </div>
         )
     }
