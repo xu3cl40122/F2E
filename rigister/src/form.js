@@ -12,8 +12,10 @@ class Form extends React.Component {
                 email:'',
                 password:'',
                 checkPassword:'',
-                fillAll:false
             },
+            fillAll:{
+                account:false
+            }
             
         }
         this.handleSubmit = this.handleSubmit.bind(this)
