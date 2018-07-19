@@ -75,6 +75,7 @@ function shoot(rotation, startPosition) {
     bullet.rotation = rotation;
     app.stage.addChild(bullet);
     bullets.push(bullet);
+    console.log(bullets.length)
 }
 function rotateToPoint(mx, my, px, py) {
     var self = this;
@@ -84,13 +85,17 @@ function rotateToPoint(mx, my, px, py) {
     //var degrees = angle * 180/ Math.PI;
     return angle;
 }
-
+function boxesIntersect(a, b) {
+    var ab = a.getBounds();
+    var bb = b.getBounds();
+    return ab.x + ab.width > bb.x && ab.x < bb.x + bb.width && ab.y + ab.height > bb.y && ab.y < bb.y + bb.height;
+}
 
 // start animating
-animate();  
-
-function animate() {
-    requestAnimationFrame(animate);
+animate();
+app.ticker.add(delta => animate(delta))
+function animate(delta) {
+    //requestAnimationFrame(animate);
 
     // just for fun, let's rotate mr rabbit a little
     player.rotation = rotateToPoint(app.renderer.plugins.interaction.mouse.global.x, app.renderer.plugins.interaction.mouse.global.y, player.position.x, player.position.y);
@@ -100,6 +105,14 @@ function animate() {
     for (var b = bullets.length - 1; b >= 0; b--) {
         bullets[b].position.x += Math.cos(bullets[b].rotation) * bulletSpeed;
         bullets[b].position.y += Math.sin(bullets[b].rotation) * bulletSpeed;
+        if (boxesIntersect(bullets[b], monster)) {
+            console.log('hit')
+        }
+        if (bullets[b].position.x > window.innerWidth | bullets[b].position.x < 0 | bullets[b].position.y > window.innerHeight | bullets[b].position.y < 0){
+            app.stage.removeChild(bullets[b])
+            bullets.splice(b,1)
+        }
+        
     }
     // render the container
     app.renderer.render(app.stage);
