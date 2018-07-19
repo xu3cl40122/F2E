@@ -43,10 +43,11 @@ app.stage.addChild(shield)
 var graphics = new PIXI.Graphics();
 graphics.lineStyle(0);
 graphics.beginFill(0xFFFF0B, 0.5);
-graphics.drawCircle(470, 90, 60);
+graphics.drawRect(50, 250, 120, 120);
 graphics.endFill();
 
-var monster = new PIXI.Sprite(graphics.generateTexture())
+//var monster = new PIXI.Sprite(graphics.generateTexture()) 用graphic 產生sprite
+var monster = new PIXI.Sprite.fromImage('./pic/circle.png')
 monster.anchor.set(0.5)
 monster.x = 200
 monster.y = 200 
@@ -54,6 +55,10 @@ var monsterDistance = 300
  
 monster.updatePosition = ()=>{
     monster.rotation += 0.01
+    // 轉一圈就歸零
+    if (monster.rotation > Math.PI * 2 ){
+        monster.rotation = 0
+    }
     monster.x = player.position.x - Math.cos(monster.rotation) * monsterDistance
     monster.y = player.position.y - Math.sin(monster.rotation) * monsterDistance
 }
