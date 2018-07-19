@@ -22,7 +22,7 @@ app.stage.addChild(player);
 
 app.stage.interactive = true
 app.stage.hitArea = app.screen;// 設定偵測範圍
-var distance = 50 
+var distance = 50 // 發射子彈位置的旋轉半徑
 var offset={x:0,y:0}
 app.stage.on("mousedown", function (e) {
     shoot(player.rotation, {
@@ -50,6 +50,13 @@ var monster = new PIXI.Sprite(graphics.generateTexture())
 monster.anchor.set(0.5)
 monster.x = 200
 monster.y = 200 
+var monsterDistance = 300
+ 
+monster.updatePosition = ()=>{
+    monster.rotation += 0.01
+    monster.x = player.position.x - Math.cos(monster.rotation) * monsterDistance
+    monster.y = player.position.y - Math.sin(monster.rotation) * monsterDistance
+}
 app.stage.addChild(monster)
 
 var bullets = [];
@@ -82,10 +89,9 @@ function animate() {
 
     // just for fun, let's rotate mr rabbit a little
     player.rotation = rotateToPoint(app.renderer.plugins.interaction.mouse.global.x, app.renderer.plugins.interaction.mouse.global.y, player.position.x, player.position.y);
-    /*shield.rotation = player.rotation
-    shield.x = player.position.x - Math.cos(player.rotation) * distance + offset.x
-    shield.y = player.position.y - Math.sin(player.rotation) * distance + offset.y*/
+    
     shield.updatePosition()
+    monster.updatePosition()
     for (var b = bullets.length - 1; b >= 0; b--) {
         bullets[b].position.x += Math.cos(bullets[b].rotation) * bulletSpeed;
         bullets[b].position.y += Math.sin(bullets[b].rotation) * bulletSpeed;
