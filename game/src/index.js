@@ -24,12 +24,7 @@ app.stage.interactive = true
 app.stage.hitArea = app.screen;// 設定偵測範圍
 var distance = 50 // 發射子彈位置的旋轉半徑
 var offset={x:0,y:0}
-app.stage.on("mousedown", function (e) {
-    shoot(player.rotation, {
-        x: player.position.x + Math.cos(player.rotation) * distance + offset.x,
-        y: player.position.y + Math.sin(player.rotation) * distance + offset.y
-    });
-})
+
 // init shield
 var shield = new PIXI.Sprite.fromImage('./pic/shield.png')
 shield.anchor.set(0.5)
@@ -66,6 +61,19 @@ app.stage.addChild(monster)
 
 var bullets = [];
 var bulletSpeed = 5;
+var monsterBullets = []
+app.stage.on("mousedown", function (e) {
+    shoot(player.rotation, {
+        x: player.position.x + Math.cos(player.rotation) * distance + offset.x,
+        y: player.position.y + Math.sin(player.rotation) * distance + offset.y
+    });
+})
+app.stage.on("mousedown", function (e) {
+    monsterShoot(monster.rotation, {
+        x: monster.position.x + Math.cos(monster.rotation) * 30,
+        y: monster.position.y + Math.sin(monster.rotation) * 30
+    })
+})
 
 function shoot(rotation, startPosition) {
     var bullet = new PIXI.Sprite.fromImage('./pic/bullet.png');
@@ -75,7 +83,15 @@ function shoot(rotation, startPosition) {
     bullet.rotation = rotation;
     app.stage.addChild(bullet);
     bullets.push(bullet);
-    console.log(bullets.length)
+}
+function monsterShoot(rotation, startPosition){
+    var bullet = new PIXI.Sprite.fromImage('./pic/c_bullet.png');
+    bullet.anchor.set(0.5)
+    bullet.position.x = startPosition.x;
+    bullet.position.y = startPosition.y;
+    bullet.rotation = rotation;
+    app.stage.addChild(bullet);
+    monsterBullets.push(bullet);
 }
 function rotateToPoint(mx, my, px, py) {
     var self = this;
