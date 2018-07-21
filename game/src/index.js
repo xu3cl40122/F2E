@@ -12,7 +12,8 @@ app.renderer.autoResize = true;
 app.renderer.resize(window.innerWidth, window.innerHeight);
 
 // init player
-var player = PIXI.Sprite.fromImage('./pic/player3.png')
+var player = new PIXI.Sprite.fromImage('./pic/player3.png')
+console.log(player)
 player.anchor.x = 0.5
 player.anchor.y = 0.5//讓定位點置中
 // move the sprite to the center of the screen
@@ -60,8 +61,15 @@ app.stage.on("mousedown", function (e) {
         y: player.position.y + Math.sin(player.rotation) * distance + offset.y
     },'./pic/bullet.png',bullets);
 })
-
-app.stage.on("mousedown", function (e) {
+setInterval(function(){
+    for (let e in livingEnemys) {
+        shoot(livingEnemys[e].rotation, {
+            x: livingEnemys[e].position.x + Math.cos(livingEnemys[e].rotation) * 30,
+            y: livingEnemys[e].position.y + Math.sin(livingEnemys[e].rotation) * 30
+        }, './pic/c_bullet.png', enemyBullets)
+    }
+},1000)
+/*app.stage.on("mousedown", function (e) {
     for(let e in livingEnemys){
         shoot(livingEnemys[e].rotation, {
             x: livingEnemys[e].position.x + Math.cos(livingEnemys[e].rotation) * 30,
@@ -69,7 +77,7 @@ app.stage.on("mousedown", function (e) {
         }, './pic/c_bullet.png', enemyBullets)
     }
     
-})
+})*/
 
 
 // start animating
@@ -84,8 +92,8 @@ function animate(delta) {
     for (let e in livingEnemys){
         livingEnemys[e].updatePosition()
     }
-    handleBullets(bullets,livingEnemys,5)
-    handleBullets(enemyBullets,[player],5)
+    handleBullets(bullets,livingEnemys,5,null)
+    handleBullets(enemyBullets, [player], 5, [shield])
    
 
     // render the container
@@ -123,12 +131,27 @@ function boxesIntersect(a, b) {
     var bb = b.getBounds();
     return ab.x + ab.width > bb.x && ab.x < bb.x + bb.width && ab.y + ab.height > bb.y && ab.y < bb.y + bb.height;
 }
-function handleBullets(bullets,beShoot,bulletSpeed){
+
+function handleBullets(bullets,beShoot,bulletSpeed,shields){
     for (var b = bullets.length - 1; b >= 0; b--) {
         bullets[b].position.x += Math.cos(bullets[b].rotation) * bulletSpeed;
         bullets[b].position.y += Math.sin(bullets[b].rotation) * bulletSpeed;
+
+        // --- 碰撞偵測 ---
+        alreadyHit = false
+        for (var s in shields) {
+            if (boxesIntersect(bullets[b], shields[s])) {
+                console.log('block')
+                app.stage.removeChild(bullets[b])
+                bullets.splice(b, 1)
+                alreadyHit = true 
+                break
+            }
+        }
+        if(alreadyHit) continue
         for(var t in beShoot){
             if (boxesIntersect(bullets[b], beShoot[t])) {
+                console.log('hit')
             }
         }
         if (bullets[b].position.x > window.innerWidth | bullets[b].position.x < 0 | bullets[b].position.y > window.innerHeight | bullets[b].position.y < 0) {
@@ -145,8 +168,7 @@ function createCircleEnemy(){
     var monster = new PIXI.Sprite.fromImage('./pic/circle.png')
     monster.anchor.set(0.5)
     var monsterDistance = 300
-    monster.rotation = randomIntFromInterval(0,6)
-    console.log(monster.rotation)
+    monster.rotation = randomIntFromInterval(0, 5) + Math.random()
     monster.updatePosition = () => {
         monster.rotation += 0.01
         // 轉一圈就歸零
