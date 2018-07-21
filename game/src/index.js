@@ -19,6 +19,9 @@ player.anchor.y = 0.5//讓定位點置中
 // move the sprite to the center of the screen
 player.x = app.screen.width / 2;
 player.y = app.screen.height / 2;
+player.beHit =()=>{
+    console.log('player hit')
+}
 app.stage.addChild(player);
 
 app.stage.interactive = true
@@ -33,6 +36,9 @@ shield.updatePosition = ()=>{
     shield.rotation = player.rotation
     shield.x = player.position.x - Math.cos(player.rotation) * 40 
     shield.y = player.position.y - Math.sin(player.rotation) * 40 
+}
+shield.beHit = ()=>{
+    return
 } 
 app.stage.addChild(shield)
 // init gun 
@@ -43,8 +49,13 @@ gun.updatePosition=()=>{
     gun.x = player.position.x + Math.cos(player.rotation) * 35
     gun.y = player.position.y + Math.sin(player.rotation) * 35
 }
+gun.beHit=()=>{
+    return
+}
 app.stage.addChild(gun)
-
+// init circle hit area
+var graphics = new PIXI.Graphics() 
+graphics.drawCircle(470, 90, 60)
 
 //var monster = new PIXI.Sprite(graphics.generateTexture()) 用graphic 產生sprite
 var enemyWaves = [3,4,5]
@@ -93,7 +104,7 @@ function animate(delta) {
         livingEnemys[e].updatePosition()
     }
     handleBullets(bullets,livingEnemys,5,null)
-    handleBullets(enemyBullets, [player], 5, [shield])
+    handleBullets(enemyBullets, [player], 3, [shield])
    
 
     // render the container
@@ -141,7 +152,7 @@ function handleBullets(bullets,beShoot,bulletSpeed,shields){
         alreadyHit = false
         for (var s in shields) {
             if (boxesIntersect(bullets[b], shields[s])) {
-                console.log('block')
+                //console.log('block')
                 app.stage.removeChild(bullets[b])
                 bullets.splice(b, 1)
                 alreadyHit = true 
@@ -151,9 +162,15 @@ function handleBullets(bullets,beShoot,bulletSpeed,shields){
         if(alreadyHit) continue
         for(var t in beShoot){
             if (boxesIntersect(bullets[b], beShoot[t])) {
-                console.log('hit')
+               //console.log('hit')
+                app.stage.removeChild(bullets[b])
+                bullets.splice(b, 1)
+                beShoot[t].beHit()
+                alreadyHit = true
+                break
             }
         }
+        if (alreadyHit) continue
         if (bullets[b].position.x > window.innerWidth | bullets[b].position.x < 0 | bullets[b].position.y > window.innerHeight | bullets[b].position.y < 0) {
             app.stage.removeChild(bullets[b])
             bullets.splice(b, 1)
@@ -178,6 +195,12 @@ function createCircleEnemy(){
         monster.x = player.position.x - Math.cos(monster.rotation) * monsterDistance
         monster.y = player.position.y - Math.sin(monster.rotation) * monsterDistance
     }
+    monster.beHit = function(){
+        app.stage.removeChild(this)
+        console.log(livingEnemys)
+        livingEnemys.splice(this.index,1)
+    }
     app.stage.addChild(monster)
     livingEnemys.push(monster)
+    monster.index = livingEnemys.length -1
 }
