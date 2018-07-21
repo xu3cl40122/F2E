@@ -74,6 +74,7 @@ app.stage.on("mousedown", function (e) {
 })
 setInterval(function(){
     for (let e in livingEnemys) {
+        if(livingEnemys[e]== 'die') continue
         shoot(livingEnemys[e].rotation, {
             x: livingEnemys[e].position.x + Math.cos(livingEnemys[e].rotation) * 30,
             y: livingEnemys[e].position.y + Math.sin(livingEnemys[e].rotation) * 30
@@ -101,6 +102,7 @@ function animate(delta) {
     gun.updatePosition()
     shield.updatePosition()
     for (let e in livingEnemys){
+        if(livingEnemys[e]== 'die') continue
         livingEnemys[e].updatePosition()
     }
     handleBullets(bullets,livingEnemys,5,null)
@@ -149,6 +151,7 @@ function handleBullets(bullets,beShoot,bulletSpeed,shields){
         bullets[b].position.y += Math.sin(bullets[b].rotation) * bulletSpeed;
 
         // --- 碰撞偵測 ---
+        
         alreadyHit = false
         for (var s in shields) {
             if (boxesIntersect(bullets[b], shields[s])) {
@@ -161,6 +164,7 @@ function handleBullets(bullets,beShoot,bulletSpeed,shields){
         }
         if(alreadyHit) continue
         for(var t in beShoot){
+            if (beShoot[t] == 'die') continue
             if (boxesIntersect(bullets[b], beShoot[t])) {
                //console.log('hit')
                 app.stage.removeChild(bullets[b])
@@ -195,10 +199,10 @@ function createCircleEnemy(){
         monster.x = player.position.x - Math.cos(monster.rotation) * monsterDistance
         monster.y = player.position.y - Math.sin(monster.rotation) * monsterDistance
     }
-    monster.beHit = function(){
+    monster.beHit = function(){ // 用 => this 會是 window
+        console.log(this.index)
         app.stage.removeChild(this)
-        console.log(livingEnemys)
-        livingEnemys.splice(this.index,1)
+        livingEnemys.splice(this.index,1,'die')
     }
     app.stage.addChild(monster)
     livingEnemys.push(monster)
