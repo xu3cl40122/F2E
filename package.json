@@ -25,6 +25,7 @@
     "mysql2": "^1.5.3",
     "node-datetime": "^2.0.6",
     "nodemon": "^1.17.3",
+    "pixi": "^0.3.1",
     "react": "^16.3.2",
     "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^16.3.2",
