@@ -13,7 +13,6 @@ app.renderer.resize(window.innerWidth, window.innerHeight);
 
 // init player
 var player = new PIXI.Sprite.fromImage('./pic/player3.png')
-console.log(player)
 player.anchor.x = 0.5
 player.anchor.y = 0.5//讓定位點置中
 // move the sprite to the center of the screen
@@ -58,14 +57,18 @@ var graphics = new PIXI.Graphics()
 graphics.drawCircle(470, 90, 60)
 
 //var monster = new PIXI.Sprite(graphics.generateTexture()) 用graphic 產生sprite
-var enemyWaves = [3,4,5]
+var totalWaves = [{ circle: 3, rock: 0 }, { circle: 5, rock: 2 }, { circle: 6, rock: 2}]
+var waveIndex = 0
+var currentWave = totalWaves[waveIndex]
 var livingEnemys = []
 var bullets = [];
 var enemyBullets = []
-
-for(let w = 0; w < enemyWaves[0]; w++){
+var isFirstWave = true
+/*
+for (let w = 0; w < currentWave.circle; w++){
     createCircleEnemy()
 }
+*/
 app.stage.on("mousedown", function (e) {
     shoot(player.rotation, {
         x: player.position.x + Math.cos(player.rotation) * distance + offset.x,
@@ -75,40 +78,34 @@ app.stage.on("mousedown", function (e) {
 setInterval(function(){
     for (let e in livingEnemys) {
         if(livingEnemys[e]== 'die') continue
+        if (Math.random() >0.35) continue
         shoot(livingEnemys[e].rotation, {
             x: livingEnemys[e].position.x + Math.cos(livingEnemys[e].rotation) * 30,
             y: livingEnemys[e].position.y + Math.sin(livingEnemys[e].rotation) * 30
         }, './pic/c_bullet.png', enemyBullets)
     }
-},1000)
-/*app.stage.on("mousedown", function (e) {
-    for(let e in livingEnemys){
-        shoot(livingEnemys[e].rotation, {
-            x: livingEnemys[e].position.x + Math.cos(livingEnemys[e].rotation) * 30,
-            y: livingEnemys[e].position.y + Math.sin(livingEnemys[e].rotation) * 30
-        }, './pic/c_bullet.png', enemyBullets)
-    }
-    
-})*/
+},600)
 
 
-// start animating
-animate();
+
+// start game loop
+//animate();
 app.ticker.add(delta => animate(delta))
+
 function animate(delta) {
-    //requestAnimationFrame(animate);
+    //requestAnimationFrame(animate); HTML內建的動畫 FUNCTION
     // just for fun, let's rotate mr rabbit a little
     player.rotation = rotateToPoint(app.renderer.plugins.interaction.mouse.global.x, app.renderer.plugins.interaction.mouse.global.y, player.position.x, player.position.y);
     gun.updatePosition()
     shield.updatePosition()
+    controllWave()
     for (let e in livingEnemys){
         if(livingEnemys[e]== 'die') continue
         livingEnemys[e].updatePosition()
     }
     handleBullets(bullets,livingEnemys,5,null)
     handleBullets(enemyBullets, [player], 3, [shield])
-   
-
+    
     // render the container
     app.renderer.render(app.stage);
 }
@@ -188,7 +185,7 @@ function randomIntFromInterval(min, max) {
 function createCircleEnemy(){
     var monster = new PIXI.Sprite.fromImage('./pic/circle.png')
     monster.anchor.set(0.5)
-    var monsterDistance = 300
+    var monsterDistance = (app.screen.height / 2)-50
     monster.rotation = randomIntFromInterval(0, 5) + Math.random()
     monster.updatePosition = () => {
         monster.rotation += 0.01
@@ -207,4 +204,27 @@ function createCircleEnemy(){
     app.stage.addChild(monster)
     livingEnemys.push(monster)
     monster.index = livingEnemys.length -1
+}
+function controllWave(){
+    if (isFirstWave){
+        for (let w = 0; w < currentWave.circle; w++) {
+            createCircleEnemy()
+        }
+        isFirstWave = false
+    }
+    shouldNextWave = livingEnemys.every((enemy)=>{
+        return enemy == 'die'
+    })
+    if(shouldNextWave){
+        if (waveIndex == totalWaves.length -1){
+            alert('感謝你這麼有毅力玩到這~~')
+        }
+        waveIndex +=1
+        currentWave = totalWaves[waveIndex]
+        livingEnemys=[]
+        for (let w = 0; w < currentWave.circle; w++) {
+            createCircleEnemy()
+        }
+       
+    }
 }
