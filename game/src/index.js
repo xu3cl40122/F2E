@@ -1,4 +1,9 @@
 //Create a Pixi Application
+alert(`外星人來啦!!
+使用左鍵發射子彈
+並利用背後的盾牌保護自己
+想辦法在這場星際戰爭中生存下去
+`)
 let app = new PIXI.Application({ width: 800, height: 600 });
 
 //Add the canvas that Pixi automatically created for you to the HTML document
@@ -18,8 +23,10 @@ player.anchor.y = 0.5//讓定位點置中
 // move the sprite to the center of the screen
 player.x = app.screen.width / 2;
 player.y = app.screen.height / 2;
+player.life = 10
 player.beHit =()=>{
     console.log('player hit')
+    player.life -= 1
 }
 app.stage.addChild(player);
 
@@ -57,28 +64,40 @@ var graphics = new PIXI.Graphics()
 graphics.drawCircle(470, 90, 60)
 
 //var monster = new PIXI.Sprite(graphics.generateTexture()) 用graphic 產生sprite
-var totalWaves = [{ circle: 3, rock: 0 }, { circle: 5, rock: 2 }, { circle: 6, rock: 2}]
+var totalWaves = [{ circle: 2, rock: 0 }, { circle: 3, rock: 2 }, { circle: 4, rock: 2}]
 var waveIndex = 0
 var currentWave = totalWaves[waveIndex]
 var livingEnemys = []
 var bullets = [];
 var enemyBullets = []
 var isFirstWave = true
-/*
-for (let w = 0; w < currentWave.circle; w++){
-    createCircleEnemy()
-}
-*/
+
+// init live counter
+
+var lifeCounter = new PIXI.Text(`LIFE:${player.life}`, {
+    fontSize: 32,
+    fill: white
+})
+lifeCounter.x = app.screen.width - 200
+lifeCounter.y = 50
+
+app.stage.addChild(lifeCounter)
+
+
+
+// 開火偵測
 app.stage.on("mousedown", function (e) {
     shoot(player.rotation, {
         x: player.position.x + Math.cos(player.rotation) * distance + offset.x,
         y: player.position.y + Math.sin(player.rotation) * distance + offset.y
     },'./pic/bullet.png',bullets);
 })
+// 控制小兵開火
 setInterval(function(){
     for (let e in livingEnemys) {
+        //console.log(livingEnemys[e].position.x, livingEnemys[e].position.y)
         if(livingEnemys[e]== 'die') continue
-        if (Math.random() >0.35) continue
+        if (Math.random() >0.18) continue
         shoot(livingEnemys[e].rotation, {
             x: livingEnemys[e].position.x + Math.cos(livingEnemys[e].rotation) * 30,
             y: livingEnemys[e].position.y + Math.sin(livingEnemys[e].rotation) * 30
@@ -90,11 +109,16 @@ setInterval(function(){
 
 // start game loop
 //animate();
+
 app.ticker.add(delta => animate(delta))
 
 function animate(delta) {
     //requestAnimationFrame(animate); HTML內建的動畫 FUNCTION
-    // just for fun, let's rotate mr rabbit a little
+    if(player.life <=0){
+        app.ticker.stop()
+        alert('Game over')
+        window.location.reload()
+    }
     player.rotation = rotateToPoint(app.renderer.plugins.interaction.mouse.global.x, app.renderer.plugins.interaction.mouse.global.y, player.position.x, player.position.y);
     gun.updatePosition()
     shield.updatePosition()
@@ -105,7 +129,7 @@ function animate(delta) {
     }
     handleBullets(bullets,livingEnemys,5,null)
     handleBullets(enemyBullets, [player], 3, [shield])
-    
+    lifeCounter.text = `LIFE:${player.life}`
     // render the container
     app.renderer.render(app.stage);
 }
@@ -119,15 +143,7 @@ function shoot(rotation, startPosition,imgURL,array) {
     app.stage.addChild(bullet);
     array.push(bullet);
 }
-function monsterShoot(rotation, startPosition) {
-    var bullet = new PIXI.Sprite.fromImage('./pic/c_bullet.png');
-    bullet.anchor.set(0.5)
-    bullet.position.x = startPosition.x;
-    bullet.position.y = startPosition.y;
-    bullet.rotation = rotation;
-    app.stage.addChild(bullet);
-    enemyBullets.push(bullet);
-}
+
 function rotateToPoint(mx, my, px, py) {
     var self = this;
     var dist_Y = my - py;
@@ -142,14 +158,15 @@ function boxesIntersect(a, b) {
     return ab.x + ab.width > bb.x && ab.x < bb.x + bb.width && ab.y + ab.height > bb.y && ab.y < bb.y + bb.height;
 }
 
+
 function handleBullets(bullets,beShoot,bulletSpeed,shields){
     for (var b = bullets.length - 1; b >= 0; b--) {
         bullets[b].position.x += Math.cos(bullets[b].rotation) * bulletSpeed;
         bullets[b].position.y += Math.sin(bullets[b].rotation) * bulletSpeed;
-
+        // console.log(Math.cos(bullets[b].rotation), Math.sin(bullets[b].rotation))
         // --- 碰撞偵測 ---
         
-        alreadyHit = false
+        var alreadyHit = false
         for (var s in shields) {
             if (boxesIntersect(bullets[b], shields[s])) {
                 //console.log('block')
@@ -212,12 +229,14 @@ function controllWave(){
         }
         isFirstWave = false
     }
-    shouldNextWave = livingEnemys.every((enemy)=>{
+    var shouldNextWave = livingEnemys.every((enemy)=>{
         return enemy == 'die'
     })
     if(shouldNextWave){
         if (waveIndex == totalWaves.length -1){
-            alert('感謝你這麼有毅力玩到這~~')
+            app.ticker.stop()
+            alert('感謝您維護了宇宙的和平')
+            window.location.reload()
         }
         waveIndex +=1
         currentWave = totalWaves[waveIndex]
