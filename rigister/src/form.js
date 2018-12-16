@@ -210,12 +210,11 @@ class Drag extends React.Component {
             alert('不能超過10MB')
             return 
         }
-        if(file.type != 'image/jpeg' | file.type != 'image/png'){
+        if(file.type != 'image/jpeg' & file.type != 'image/png'){
             alert('只接受 jpg 或 png 檔')
             return
         }
         var reader = new FileReader()
-        console.log(e.nativeEvent.dataTransfer.files[0])
         reader.readAsDataURL(e.nativeEvent.dataTransfer.files[0])
         // 非同步
         reader.onload = (data)=> {

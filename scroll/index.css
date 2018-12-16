@@ -1,0 +1,131 @@
+* {
+  box-sizing: border-box;
+}
+h2,
+h3,
+p,
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, sans-serif;
+}
+.hide {
+  display: none;
+}
+.opening {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background: #1469ff;
+}
+.opening .star {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  padding-bottom: 57px;
+}
+.opening .star .top {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 182.5px 313px 182.5px;
+  border-color: transparent transparent #ff3c82 transparent;
+}
+.opening .star .down {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 182.5px 313px 182.5px;
+  border-color: transparent transparent #ff3c82 transparent;
+  transform: rotate(180deg);
+  position: absolute;
+  top: 57px;
+}
+.opening .circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 530px;
+  height: 530px;
+  background: #0027c8;
+  border-radius: 50%;
+  z-index: 10;
+}
+.opening .square {
+  width: 440px;
+  height: 440px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  background: #000;
+}
+.opening .textBlock {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  text-align: center;
+  z-index: 25;
+}
+.opening .textBlock h2 {
+  font-size: 64px;
+}
+.opening .textBlock h3 {
+  font-size: 32px;
+  font-weight: 200;
+}
+.question1 {
+  width: 100%;
+  height: 100vh;
+}
+.question1 .leftBlock {
+  width: 100%;
+  height: 100%;
+  background: #1469ff;
+  padding: 100px 130px;
+}
+.question1 .questionContainer {
+  width: 400px;
+}
+.question1 .questionContainer h2 {
+  color: #ff3c82;
+  font-size: 64px;
+}
+.question1 .questionContainer h3 {
+  color: #fff;
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+.question1 .questionContainer p {
+  color: #0027c8;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+.question1 .questionContainer ul {
+  padding: 0;
+  list-style: none;
+}
+.question1 .questionContainer li {
+  width: 100%;
+  height: 55px;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 30px;
+  font-size: 20px;
+  line-height: 55px;
+  text-align: center;
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+}
+.question1 .questionContainer li:hover {
+  background: #fff;
+  color: #1469ff;
+}
